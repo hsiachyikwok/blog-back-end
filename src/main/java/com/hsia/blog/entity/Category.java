@@ -19,5 +19,5 @@ public class Category {
 
     private Date createTime;
 
-    private Date upDateTime;
+    private Date updateTime;
 }

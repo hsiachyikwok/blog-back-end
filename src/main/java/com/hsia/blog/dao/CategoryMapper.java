@@ -1,5 +1,7 @@
 package com.hsia.blog.dao;
 
+import com.hsia.blog.entity.Category;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
@@ -9,4 +11,8 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface CategoryMapper {
+
+    @Insert("insert into category (id, cat_name,cat_desc,create_time,update_time) VALUES(#{id}, #{catName},#{catDesc},#{createTime},#{updateTime})")
+    int insert(Category category);
+
 }
