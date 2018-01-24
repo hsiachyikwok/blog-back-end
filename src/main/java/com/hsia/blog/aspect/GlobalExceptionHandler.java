@@ -18,7 +18,7 @@ public class GlobalExceptionHandler {
         if(e instanceof GlobalException) {
             GlobalException e1 = (GlobalException)e;
             vo.setCode(e1.getCode());
-            vo.setMessage(e.getMessage());
+            vo.setMessage(e1.getMessage());
         }else{
             vo.setCode("-999");
             vo.setMessage(ResponseVo.ERROR_MESSAGE);
