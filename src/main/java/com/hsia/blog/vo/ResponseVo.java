@@ -11,6 +11,8 @@ import lombok.Data;
 public class ResponseVo {
     public static final String ERROR_MESSAGE="system error";
 
+    public static final String PARAM_VALIDATE_ERROR="param validate error";
+
     public static final String SUCCESS_MESSAGE="success";
 
     private String code;

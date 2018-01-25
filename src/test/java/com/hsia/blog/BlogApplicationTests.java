@@ -3,6 +3,7 @@ package com.hsia.blog;
 import com.hsia.blog.dao.CategoryMapper;
 import com.hsia.blog.entity.Category;
 import com.hsia.blog.util.PrimaryKeyUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.LoggerFactory;
@@ -16,6 +17,7 @@ import java.util.logging.Logger;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
+@Slf4j
 public class BlogApplicationTests {
 	@Autowired
 	private CategoryMapper categoryMapper;
@@ -26,9 +28,8 @@ public class BlogApplicationTests {
 
 	@Test
 	public void testPrimary() {
-		org.slf4j.Logger logger = LoggerFactory.getLogger(getClass());
 		String id = PrimaryKeyUtil.generateShortUUID();
-		logger.info(id);
+		log.info(id);
 	}
 
 	@Test

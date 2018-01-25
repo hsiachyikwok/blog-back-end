@@ -2,8 +2,13 @@ package com.hsia.blog.controller;
 
 import com.hsia.blog.exception.GlobalException;
 import com.hsia.blog.vo.ResponseVo;
+import lombok.SneakyThrows;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import javax.validation.constraints.Size;
 
 /**
  * @author: hsia
@@ -11,13 +16,17 @@ import org.springframework.web.bind.annotation.RestController;
  * @Description: 后台登录接口
  */
 @RestController
+@Slf4j
+@Validated
 public class LoginController {
     @RequestMapping("/")
-    public ResponseVo test(){
-
-        throw GlobalException.SESSION_OUT_OF_DATE;
-//        ResponseVo vo = new ResponseVo();
-//        vo.setBody("ee");
-//        return vo;
+    @SneakyThrows //不用显示throw
+    public ResponseVo test(@RequestParam(value = "str")@Size(min = 1, max = 3,message = "str长度不对")String str,
+                           @RequestParam(value = "str1")@Size(min = 1, max = 3,message = "str1长度不对1")String str1){
+        log.info("1111");
+        //throw new Exception();
+        ResponseVo vo = new ResponseVo();
+        vo.setBody("ee");
+        return vo;
 }
 }
