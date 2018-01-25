@@ -1,4 +1,4 @@
-package com.hsia.blog.controller;
+package com.hsia.blog.controller.auth;
 
 import com.hsia.blog.exception.GlobalException;
 import com.hsia.blog.vo.ResponseVo;
@@ -21,6 +21,7 @@ import javax.validation.constraints.Size;
 @Slf4j
 @Validated
 @Api("登录")
+@RequestMapping("/admin")
 public class LoginController {
     @ApiOperation("登录")
     @ApiResponses({
@@ -33,7 +34,7 @@ public class LoginController {
             @ApiImplicitParam(paramType = "query", name = "password", dataType = "String", required = true, value = "用户的密码",
                     defaultValue = "xiaoxiong")
     })
-    @RequestMapping(value = "/",method = RequestMethod.GET)
+    @RequestMapping(value = "/login",method = RequestMethod.GET)
     @SneakyThrows //不用显示throw
     public ResponseVo test(@RequestParam(value = "str")@Size(min = 1, max = 3,message = "str长度不对")String str,
                            @RequestParam(value = "str1")@Size(min = 1, max = 3,message = "str1长度不对1")String str1){
