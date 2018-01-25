@@ -24,7 +24,7 @@ public class Swagger {
 
     private static final String title = "online doc";
     private static final String description = "blog system";
-    private static final String termsOfServiceUrl = "www.xiaqiguo.com";
+    private static final String termsOfServiceUrl = "http://www.xiaqiguo.com";
     private static final String name = "hsiachyikwok";
     private static final String url = "http://www.xiaqiguo.com";
     private static final String email = "hsiachyikwok@gmail.com";
@@ -49,11 +49,12 @@ public class Swagger {
     }
 
     @Bean
-    public Docket createRestApi() {
+    public Docket controllerApi() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
+                .groupName("Login")
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.hsia.blog"))
+                .apis(RequestHandlerSelectors.basePackage("com.hsia.blog.controller"))
                 .paths(PathSelectors.any())
                 .build();
     }
