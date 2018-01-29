@@ -4,6 +4,7 @@ import com.hsia.blog.api.IArticleService;
 import com.hsia.blog.dao.ArticleMapper;
 import com.hsia.blog.entity.Article;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -12,6 +13,7 @@ import java.util.List;
  * @Date: 2018/1/25 下午5:37
  * @Description:
  */
+@Service
 public class ArticleServiceImpl extends BaseServiceImpl implements IArticleService {
 
     @Autowired

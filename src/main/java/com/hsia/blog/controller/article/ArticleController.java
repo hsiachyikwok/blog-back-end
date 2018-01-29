@@ -29,7 +29,9 @@ public class ArticleController {
 
     @RequestMapping(value = "/list",method = RequestMethod.GET)
     public ResponseVo listArticle(){
-        return new ResponseVo();
+        ResponseVo vo = new ResponseVo();
+        vo.setBody("1111");
+        return vo;
     }
 
     @RequestMapping(value = "/{id}",method = RequestMethod.DELETE)
