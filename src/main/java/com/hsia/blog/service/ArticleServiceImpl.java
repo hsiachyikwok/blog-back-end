@@ -1,18 +1,12 @@
 package com.hsia.blog.service;
 
 import com.hsia.blog.api.IArticleService;
-import com.hsia.blog.dao.ArticleMapper;
 import com.hsia.blog.entity.Article;
+import com.hsia.blog.mapper.ArticleMapper;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import javax.annotation.Resource;
-import java.sql.DatabaseMetaData;
-import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -36,18 +30,19 @@ public class ArticleServiceImpl extends BaseServiceImpl implements IArticleServi
     @Override
     @Transactional
     public void updateArticle(Article article) {
-        articleMapper.update(article);
+        //articleMapper.update(article);
     }
 
     @Override
     @Transactional
     public void delArticle(String id) {
-        articleMapper.delete(id);
+        //articleMapper.delete(id);
     }
 
     @Override
     public List<Article> listArticleByState(String state) {
-        return articleMapper.selectArticleByState(state);
+        //return articleMapper.selectArticleByState(state);
+        return null;
     }
 
     @Override
