@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hsia.blog.mapper.ArchiveMapper">
+  <resultMap id="BaseResultMap" type="com.hsia.blog.entity.Archive">
+    <id column="id" jdbcType="CHAR" property="id" />
+    <result column="archive_time" jdbcType="TIMESTAMP" property="archiveTime" />
+    <result column="article_count" jdbcType="INTEGER" property="articleCount" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, archive_time, article_count, create_time, update_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from archive
+    where id = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from archive
+    where id = #{id,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.hsia.blog.entity.Archive">
+    insert into archive (id, archive_time, article_count, 
+      create_time, update_time)
+    values (#{id,jdbcType=CHAR}, #{archiveTime,jdbcType=TIMESTAMP}, #{articleCount,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hsia.blog.entity.Archive">
+    insert into archive
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="archiveTime != null">
+        archive_time,
+      </if>
+      <if test="articleCount != null">
+        article_count,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="archiveTime != null">
+        #{archiveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="articleCount != null">
+        #{articleCount,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hsia.blog.entity.Archive">
+    update archive
+    <set>
+      <if test="archiveTime != null">
+        archive_time = #{archiveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="articleCount != null">
+        article_count = #{articleCount,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hsia.blog.entity.Archive">
+    update archive
+    set archive_time = #{archiveTime,jdbcType=TIMESTAMP},
+      article_count = #{articleCount,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=CHAR}
+  </update>
+</mapper>

@@ -59,6 +59,7 @@ public class GlobalExceptionHandler {
         log.info("=======================================");
         log.info("Exception message: "+e.getMessage());
         log.info("=======================================");
+        e.printStackTrace();
         ResponseVo vo = new ResponseVo();
         vo.setCode("-999");
         vo.setMessage(ResponseVo.ERROR_MESSAGE);

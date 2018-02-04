@@ -1,15 +1,7 @@
 package com.hsia.blog.entity;
 
-import lombok.Data;
-
 import java.util.Date;
 
-/**
- * @author: hsia
- * @Date: 2018/1/24 下午3:48
- * @Description:
- */
-@Data
 public class Config {
     private String id;
 
@@ -23,7 +15,7 @@ public class Config {
 
     private String blogSubTitle;
 
-    private String blog_logo;
+    private String blogLogo;
 
     private String favicon;
 
@@ -37,22 +29,197 @@ public class Config {
 
     private String allowComment;
 
-    private String listStyle;
-
-    private int recentCommentSize;
-
-    private int pageSize;
-
-    private int pageWidth;
-
-    private int mostViewSize;
-
-    private int mostCommentSize;
-
-    private int usedTagSize;
-
     private Date createTime;
 
     private Date updateTime;
 
+    private String listStyle;
+
+    private Integer recentCommentSize;
+
+    private Integer pageSize;
+
+    private Integer pageWidth;
+
+    private Integer mostViewSize;
+
+    private Integer mostCommentSize;
+
+    private Integer usedTagSize;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id == null ? null : id.trim();
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName == null ? null : userName.trim();
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password == null ? null : password.trim();
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar == null ? null : avatar.trim();
+    }
+
+    public String getBlogTitle() {
+        return blogTitle;
+    }
+
+    public void setBlogTitle(String blogTitle) {
+        this.blogTitle = blogTitle == null ? null : blogTitle.trim();
+    }
+
+    public String getBlogSubTitle() {
+        return blogSubTitle;
+    }
+
+    public void setBlogSubTitle(String blogSubTitle) {
+        this.blogSubTitle = blogSubTitle == null ? null : blogSubTitle.trim();
+    }
+
+    public String getBlogLogo() {
+        return blogLogo;
+    }
+
+    public void setBlogLogo(String blogLogo) {
+        this.blogLogo = blogLogo == null ? null : blogLogo.trim();
+    }
+
+    public String getFavicon() {
+        return favicon;
+    }
+
+    public void setFavicon(String favicon) {
+        this.favicon = favicon == null ? null : favicon.trim();
+    }
+
+    public String getMetaKeywords() {
+        return metaKeywords;
+    }
+
+    public void setMetaKeywords(String metaKeywords) {
+        this.metaKeywords = metaKeywords == null ? null : metaKeywords.trim();
+    }
+
+    public String getMetaDesc() {
+        return metaDesc;
+    }
+
+    public void setMetaDesc(String metaDesc) {
+        this.metaDesc = metaDesc == null ? null : metaDesc.trim();
+    }
+
+    public String getFooter() {
+        return footer;
+    }
+
+    public void setFooter(String footer) {
+        this.footer = footer == null ? null : footer.trim();
+    }
+
+    public String getNotice() {
+        return notice;
+    }
+
+    public void setNotice(String notice) {
+        this.notice = notice == null ? null : notice.trim();
+    }
+
+    public String getAllowComment() {
+        return allowComment;
+    }
+
+    public void setAllowComment(String allowComment) {
+        this.allowComment = allowComment == null ? null : allowComment.trim();
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public Date getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
+    }
+
+    public String getListStyle() {
+        return listStyle;
+    }
+
+    public void setListStyle(String listStyle) {
+        this.listStyle = listStyle == null ? null : listStyle.trim();
+    }
+
+    public Integer getRecentCommentSize() {
+        return recentCommentSize;
+    }
+
+    public void setRecentCommentSize(Integer recentCommentSize) {
+        this.recentCommentSize = recentCommentSize;
+    }
+
+    public Integer getPageSize() {
+        return pageSize;
+    }
+
+    public void setPageSize(Integer pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    public Integer getPageWidth() {
+        return pageWidth;
+    }
+
+    public void setPageWidth(Integer pageWidth) {
+        this.pageWidth = pageWidth;
+    }
+
+    public Integer getMostViewSize() {
+        return mostViewSize;
+    }
+
+    public void setMostViewSize(Integer mostViewSize) {
+        this.mostViewSize = mostViewSize;
+    }
+
+    public Integer getMostCommentSize() {
+        return mostCommentSize;
+    }
+
+    public void setMostCommentSize(Integer mostCommentSize) {
+        this.mostCommentSize = mostCommentSize;
+    }
+
+    public Integer getUsedTagSize() {
+        return usedTagSize;
+    }
+
+    public void setUsedTagSize(Integer usedTagSize) {
+        this.usedTagSize = usedTagSize;
+    }
 }

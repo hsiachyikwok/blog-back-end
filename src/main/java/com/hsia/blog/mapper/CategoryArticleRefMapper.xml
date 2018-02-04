@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hsia.blog.mapper.CategoryArticleRefMapper">
+  <resultMap id="BaseResultMap" type="com.hsia.blog.entity.CategoryArticleRef">
+    <id column="id" jdbcType="CHAR" property="id" />
+    <result column="article_id" jdbcType="CHAR" property="articleId" />
+    <result column="category_id" jdbcType="CHAR" property="categoryId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, article_id, category_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from category_article_ref
+    where id = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from category_article_ref
+    where id = #{id,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.hsia.blog.entity.CategoryArticleRef">
+    insert into category_article_ref (id, article_id, category_id
+      )
+    values (#{id,jdbcType=CHAR}, #{articleId,jdbcType=CHAR}, #{categoryId,jdbcType=CHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hsia.blog.entity.CategoryArticleRef">
+    insert into category_article_ref
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="articleId != null">
+        article_id,
+      </if>
+      <if test="categoryId != null">
+        category_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="articleId != null">
+        #{articleId,jdbcType=CHAR},
+      </if>
+      <if test="categoryId != null">
+        #{categoryId,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hsia.blog.entity.CategoryArticleRef">
+    update category_article_ref
+    <set>
+      <if test="articleId != null">
+        article_id = #{articleId,jdbcType=CHAR},
+      </if>
+      <if test="categoryId != null">
+        category_id = #{categoryId,jdbcType=CHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hsia.blog.entity.CategoryArticleRef">
+    update category_article_ref
+    set article_id = #{articleId,jdbcType=CHAR},
+      category_id = #{categoryId,jdbcType=CHAR}
+    where id = #{id,jdbcType=CHAR}
+  </update>
+</mapper>

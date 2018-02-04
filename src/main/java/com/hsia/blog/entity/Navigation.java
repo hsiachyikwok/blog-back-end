@@ -1,15 +1,7 @@
 package com.hsia.blog.entity;
 
-import lombok.Data;
-
 import java.util.Date;
 
-/**
- * @author: hsia
- * @Date: 2018/1/24 下午3:49
- * @Description:
- */
-@Data
 public class Navigation {
     private String id;
 
@@ -17,13 +9,77 @@ public class Navigation {
 
     private String link;
 
-    private int order;
+    private Integer order;
+
+    private Date createTime;
+
+    private Date updateTime;
 
     private String icon;
 
     private String blank;
 
-    private Date createTime;
+    public String getId() {
+        return id;
+    }
 
-    private Date updateTime;
+    public void setId(String id) {
+        this.id = id == null ? null : id.trim();
+    }
+
+    public String getNavName() {
+        return navName;
+    }
+
+    public void setNavName(String navName) {
+        this.navName = navName == null ? null : navName.trim();
+    }
+
+    public String getLink() {
+        return link;
+    }
+
+    public void setLink(String link) {
+        this.link = link == null ? null : link.trim();
+    }
+
+    public Integer getOrder() {
+        return order;
+    }
+
+    public void setOrder(Integer order) {
+        this.order = order;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public Date getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
+    }
+
+    public String getIcon() {
+        return icon;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon == null ? null : icon.trim();
+    }
+
+    public String getBlank() {
+        return blank;
+    }
+
+    public void setBlank(String blank) {
+        this.blank = blank == null ? null : blank.trim();
+    }
 }

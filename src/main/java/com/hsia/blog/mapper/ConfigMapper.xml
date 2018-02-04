@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hsia.blog.mapper.ConfigMapper">
+  <resultMap id="BaseResultMap" type="com.hsia.blog.entity.Config">
+    <id column="id" jdbcType="CHAR" property="id" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="avatar" jdbcType="VARCHAR" property="avatar" />
+    <result column="blog_title" jdbcType="VARCHAR" property="blogTitle" />
+    <result column="blog_sub_title" jdbcType="VARCHAR" property="blogSubTitle" />
+    <result column="blog_logo" jdbcType="VARCHAR" property="blogLogo" />
+    <result column="favicon" jdbcType="VARCHAR" property="favicon" />
+    <result column="meta_keywords" jdbcType="VARCHAR" property="metaKeywords" />
+    <result column="meta_desc" jdbcType="VARCHAR" property="metaDesc" />
+    <result column="footer" jdbcType="VARCHAR" property="footer" />
+    <result column="notice" jdbcType="VARCHAR" property="notice" />
+    <result column="allow_comment" jdbcType="CHAR" property="allowComment" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="list_style" jdbcType="CHAR" property="listStyle" />
+    <result column="recent_comment_size" jdbcType="INTEGER" property="recentCommentSize" />
+    <result column="page_size" jdbcType="INTEGER" property="pageSize" />
+    <result column="page_width" jdbcType="INTEGER" property="pageWidth" />
+    <result column="most_view_size" jdbcType="INTEGER" property="mostViewSize" />
+    <result column="most_comment_size" jdbcType="INTEGER" property="mostCommentSize" />
+    <result column="used_tag_size" jdbcType="INTEGER" property="usedTagSize" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, user_name, password, avatar, blog_title, blog_sub_title, blog_logo, favicon, 
+    meta_keywords, meta_desc, footer, notice, allow_comment, create_time, update_time, 
+    list_style, recent_comment_size, page_size, page_width, most_view_size, most_comment_size, 
+    used_tag_size
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from config
+    where id = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from config
+    where id = #{id,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.hsia.blog.entity.Config">
+    insert into config (id, user_name, password, 
+      avatar, blog_title, blog_sub_title, 
+      blog_logo, favicon, meta_keywords, 
+      meta_desc, footer, notice, 
+      allow_comment, create_time, update_time, 
+      list_style, recent_comment_size, page_size, 
+      page_width, most_view_size, most_comment_size, 
+      used_tag_size)
+    values (#{id,jdbcType=CHAR}, #{userName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{avatar,jdbcType=VARCHAR}, #{blogTitle,jdbcType=VARCHAR}, #{blogSubTitle,jdbcType=VARCHAR}, 
+      #{blogLogo,jdbcType=VARCHAR}, #{favicon,jdbcType=VARCHAR}, #{metaKeywords,jdbcType=VARCHAR}, 
+      #{metaDesc,jdbcType=VARCHAR}, #{footer,jdbcType=VARCHAR}, #{notice,jdbcType=VARCHAR}, 
+      #{allowComment,jdbcType=CHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{listStyle,jdbcType=CHAR}, #{recentCommentSize,jdbcType=INTEGER}, #{pageSize,jdbcType=INTEGER}, 
+      #{pageWidth,jdbcType=INTEGER}, #{mostViewSize,jdbcType=INTEGER}, #{mostCommentSize,jdbcType=INTEGER}, 
+      #{usedTagSize,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hsia.blog.entity.Config">
+    insert into config
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="userName != null">
+        user_name,
+      </if>
+      <if test="password != null">
+        password,
+      </if>
+      <if test="avatar != null">
+        avatar,
+      </if>
+      <if test="blogTitle != null">
+        blog_title,
+      </if>
+      <if test="blogSubTitle != null">
+        blog_sub_title,
+      </if>
+      <if test="blogLogo != null">
+        blog_logo,
+      </if>
+      <if test="favicon != null">
+        favicon,
+      </if>
+      <if test="metaKeywords != null">
+        meta_keywords,
+      </if>
+      <if test="metaDesc != null">
+        meta_desc,
+      </if>
+      <if test="footer != null">
+        footer,
+      </if>
+      <if test="notice != null">
+        notice,
+      </if>
+      <if test="allowComment != null">
+        allow_comment,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="listStyle != null">
+        list_style,
+      </if>
+      <if test="recentCommentSize != null">
+        recent_comment_size,
+      </if>
+      <if test="pageSize != null">
+        page_size,
+      </if>
+      <if test="pageWidth != null">
+        page_width,
+      </if>
+      <if test="mostViewSize != null">
+        most_view_size,
+      </if>
+      <if test="mostCommentSize != null">
+        most_comment_size,
+      </if>
+      <if test="usedTagSize != null">
+        used_tag_size,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="avatar != null">
+        #{avatar,jdbcType=VARCHAR},
+      </if>
+      <if test="blogTitle != null">
+        #{blogTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="blogSubTitle != null">
+        #{blogSubTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="blogLogo != null">
+        #{blogLogo,jdbcType=VARCHAR},
+      </if>
+      <if test="favicon != null">
+        #{favicon,jdbcType=VARCHAR},
+      </if>
+      <if test="metaKeywords != null">
+        #{metaKeywords,jdbcType=VARCHAR},
+      </if>
+      <if test="metaDesc != null">
+        #{metaDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="footer != null">
+        #{footer,jdbcType=VARCHAR},
+      </if>
+      <if test="notice != null">
+        #{notice,jdbcType=VARCHAR},
+      </if>
+      <if test="allowComment != null">
+        #{allowComment,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="listStyle != null">
+        #{listStyle,jdbcType=CHAR},
+      </if>
+      <if test="recentCommentSize != null">
+        #{recentCommentSize,jdbcType=INTEGER},
+      </if>
+      <if test="pageSize != null">
+        #{pageSize,jdbcType=INTEGER},
+      </if>
+      <if test="pageWidth != null">
+        #{pageWidth,jdbcType=INTEGER},
+      </if>
+      <if test="mostViewSize != null">
+        #{mostViewSize,jdbcType=INTEGER},
+      </if>
+      <if test="mostCommentSize != null">
+        #{mostCommentSize,jdbcType=INTEGER},
+      </if>
+      <if test="usedTagSize != null">
+        #{usedTagSize,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hsia.blog.entity.Config">
+    update config
+    <set>
+      <if test="userName != null">
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="avatar != null">
+        avatar = #{avatar,jdbcType=VARCHAR},
+      </if>
+      <if test="blogTitle != null">
+        blog_title = #{blogTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="blogSubTitle != null">
+        blog_sub_title = #{blogSubTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="blogLogo != null">
+        blog_logo = #{blogLogo,jdbcType=VARCHAR},
+      </if>
+      <if test="favicon != null">
+        favicon = #{favicon,jdbcType=VARCHAR},
+      </if>
+      <if test="metaKeywords != null">
+        meta_keywords = #{metaKeywords,jdbcType=VARCHAR},
+      </if>
+      <if test="metaDesc != null">
+        meta_desc = #{metaDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="footer != null">
+        footer = #{footer,jdbcType=VARCHAR},
+      </if>
+      <if test="notice != null">
+        notice = #{notice,jdbcType=VARCHAR},
+      </if>
+      <if test="allowComment != null">
+        allow_comment = #{allowComment,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="listStyle != null">
+        list_style = #{listStyle,jdbcType=CHAR},
+      </if>
+      <if test="recentCommentSize != null">
+        recent_comment_size = #{recentCommentSize,jdbcType=INTEGER},
+      </if>
+      <if test="pageSize != null">
+        page_size = #{pageSize,jdbcType=INTEGER},
+      </if>
+      <if test="pageWidth != null">
+        page_width = #{pageWidth,jdbcType=INTEGER},
+      </if>
+      <if test="mostViewSize != null">
+        most_view_size = #{mostViewSize,jdbcType=INTEGER},
+      </if>
+      <if test="mostCommentSize != null">
+        most_comment_size = #{mostCommentSize,jdbcType=INTEGER},
+      </if>
+      <if test="usedTagSize != null">
+        used_tag_size = #{usedTagSize,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hsia.blog.entity.Config">
+    update config
+    set user_name = #{userName,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      avatar = #{avatar,jdbcType=VARCHAR},
+      blog_title = #{blogTitle,jdbcType=VARCHAR},
+      blog_sub_title = #{blogSubTitle,jdbcType=VARCHAR},
+      blog_logo = #{blogLogo,jdbcType=VARCHAR},
+      favicon = #{favicon,jdbcType=VARCHAR},
+      meta_keywords = #{metaKeywords,jdbcType=VARCHAR},
+      meta_desc = #{metaDesc,jdbcType=VARCHAR},
+      footer = #{footer,jdbcType=VARCHAR},
+      notice = #{notice,jdbcType=VARCHAR},
+      allow_comment = #{allowComment,jdbcType=CHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      list_style = #{listStyle,jdbcType=CHAR},
+      recent_comment_size = #{recentCommentSize,jdbcType=INTEGER},
+      page_size = #{pageSize,jdbcType=INTEGER},
+      page_width = #{pageWidth,jdbcType=INTEGER},
+      most_view_size = #{mostViewSize,jdbcType=INTEGER},
+      most_comment_size = #{mostCommentSize,jdbcType=INTEGER},
+      used_tag_size = #{usedTagSize,jdbcType=INTEGER}
+    where id = #{id,jdbcType=CHAR}
+  </update>
+</mapper>

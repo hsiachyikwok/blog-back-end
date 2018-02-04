@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hsia.blog.mapper.NavigationMapper">
+  <resultMap id="BaseResultMap" type="com.hsia.blog.entity.Navigation">
+    <id column="id" jdbcType="CHAR" property="id" />
+    <result column="nav_name" jdbcType="VARCHAR" property="navName" />
+    <result column="link" jdbcType="VARCHAR" property="link" />
+    <result column="order" jdbcType="INTEGER" property="order" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="icon" jdbcType="VARCHAR" property="icon" />
+    <result column="blank" jdbcType="CHAR" property="blank" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, nav_name, link, order, create_time, update_time, icon, blank
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from navigation
+    where id = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from navigation
+    where id = #{id,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.hsia.blog.entity.Navigation">
+    insert into navigation (id, nav_name, link, 
+      order, create_time, update_time, 
+      icon, blank)
+    values (#{id,jdbcType=CHAR}, #{navName,jdbcType=VARCHAR}, #{link,jdbcType=VARCHAR}, 
+      #{order,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{icon,jdbcType=VARCHAR}, #{blank,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hsia.blog.entity.Navigation">
+    insert into navigation
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="navName != null">
+        nav_name,
+      </if>
+      <if test="link != null">
+        link,
+      </if>
+      <if test="order != null">
+        order,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="icon != null">
+        icon,
+      </if>
+      <if test="blank != null">
+        blank,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="navName != null">
+        #{navName,jdbcType=VARCHAR},
+      </if>
+      <if test="link != null">
+        #{link,jdbcType=VARCHAR},
+      </if>
+      <if test="order != null">
+        #{order,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="icon != null">
+        #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="blank != null">
+        #{blank,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hsia.blog.entity.Navigation">
+    update navigation
+    <set>
+      <if test="navName != null">
+        nav_name = #{navName,jdbcType=VARCHAR},
+      </if>
+      <if test="link != null">
+        link = #{link,jdbcType=VARCHAR},
+      </if>
+      <if test="order != null">
+        order = #{order,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="icon != null">
+        icon = #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="blank != null">
+        blank = #{blank,jdbcType=CHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hsia.blog.entity.Navigation">
+    update navigation
+    set nav_name = #{navName,jdbcType=VARCHAR},
+      link = #{link,jdbcType=VARCHAR},
+      order = #{order,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      icon = #{icon,jdbcType=VARCHAR},
+      blank = #{blank,jdbcType=CHAR}
+    where id = #{id,jdbcType=CHAR}
+  </update>
+</mapper>

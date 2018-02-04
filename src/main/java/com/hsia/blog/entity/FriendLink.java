@@ -1,15 +1,7 @@
 package com.hsia.blog.entity;
 
-import lombok.Data;
-
 import java.util.Date;
 
-/**
- * @author: hsia
- * @Date: 2018/1/24 下午3:49
- * @Description:
- */
-@Data
 public class FriendLink {
     private String id;
 
@@ -17,9 +9,57 @@ public class FriendLink {
 
     private String link;
 
-    private int order;
+    private Integer order;
 
     private Date createTime;
 
     private Date updateTime;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id == null ? null : id.trim();
+    }
+
+    public String getLinkTitle() {
+        return linkTitle;
+    }
+
+    public void setLinkTitle(String linkTitle) {
+        this.linkTitle = linkTitle == null ? null : linkTitle.trim();
+    }
+
+    public String getLink() {
+        return link;
+    }
+
+    public void setLink(String link) {
+        this.link = link == null ? null : link.trim();
+    }
+
+    public Integer getOrder() {
+        return order;
+    }
+
+    public void setOrder(Integer order) {
+        this.order = order;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public Date getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
+    }
 }

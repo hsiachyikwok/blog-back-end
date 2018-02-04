@@ -1,15 +1,7 @@
 package com.hsia.blog.entity;
 
-import lombok.Data;
-
 import java.util.Date;
 
-/**
- * @author: hsia
- * @Date: 2018/1/24 下午3:48
- * @Description:
- */
-@Data
 public class Category {
     private String id;
 
@@ -20,4 +12,44 @@ public class Category {
     private Date createTime;
 
     private Date updateTime;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id == null ? null : id.trim();
+    }
+
+    public String getCatName() {
+        return catName;
+    }
+
+    public void setCatName(String catName) {
+        this.catName = catName == null ? null : catName.trim();
+    }
+
+    public String getCatDesc() {
+        return catDesc;
+    }
+
+    public void setCatDesc(String catDesc) {
+        this.catDesc = catDesc == null ? null : catDesc.trim();
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public Date getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
+    }
 }

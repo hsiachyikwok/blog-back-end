@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hsia.blog.mapper.ArticleMapper">
+  <resultMap id="BaseResultMap" type="com.hsia.blog.entity.Article">
+    <id column="id" jdbcType="CHAR" property="id" />
+    <result column="article_title" jdbcType="VARCHAR" property="articleTitle" />
+    <result column="article_link" jdbcType="VARCHAR" property="articleLink" />
+    <result column="picture" jdbcType="VARCHAR" property="picture" />
+    <result column="is_top" jdbcType="CHAR" property="isTop" />
+    <result column="tags" jdbcType="VARCHAR" property="tags" />
+    <result column="type" jdbcType="CHAR" property="type" />
+    <result column="allow_comment" jdbcType="CHAR" property="allowComment" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="comment_count" jdbcType="INTEGER" property="commentCount" />
+    <result column="view_count" jdbcType="INTEGER" property="viewCount" />
+    <result column="is_del" jdbcType="CHAR" property="isDel" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.hsia.blog.entity.Article">
+    <result column="content" jdbcType="LONGVARCHAR" property="content" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, article_title, article_link, picture, is_top, tags, type, allow_comment, create_time, 
+    update_time, comment_count, view_count, is_del
+  </sql>
+  <sql id="Blob_Column_List">
+    content
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from article
+    where id = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from article
+    where id = #{id,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.hsia.blog.entity.Article">
+    insert into article (id, article_title, article_link, 
+      picture, is_top, tags, 
+      type, allow_comment, create_time, 
+      update_time, comment_count, view_count, 
+      is_del, content)
+    values (#{id,jdbcType=CHAR}, #{articleTitle,jdbcType=VARCHAR}, #{articleLink,jdbcType=VARCHAR}, 
+      #{picture,jdbcType=VARCHAR}, #{isTop,jdbcType=CHAR}, #{tags,jdbcType=VARCHAR}, 
+      #{type,jdbcType=CHAR}, #{allowComment,jdbcType=CHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{commentCount,jdbcType=INTEGER}, #{viewCount,jdbcType=INTEGER}, 
+      #{isDel,jdbcType=CHAR}, #{content,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hsia.blog.entity.Article">
+    insert into article
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="articleTitle != null">
+        article_title,
+      </if>
+      <if test="articleLink != null">
+        article_link,
+      </if>
+      <if test="picture != null">
+        picture,
+      </if>
+      <if test="isTop != null">
+        is_top,
+      </if>
+      <if test="tags != null">
+        tags,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="allowComment != null">
+        allow_comment,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="commentCount != null">
+        comment_count,
+      </if>
+      <if test="viewCount != null">
+        view_count,
+      </if>
+      <if test="isDel != null">
+        is_del,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="articleTitle != null">
+        #{articleTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="articleLink != null">
+        #{articleLink,jdbcType=VARCHAR},
+      </if>
+      <if test="picture != null">
+        #{picture,jdbcType=VARCHAR},
+      </if>
+      <if test="isTop != null">
+        #{isTop,jdbcType=CHAR},
+      </if>
+      <if test="tags != null">
+        #{tags,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=CHAR},
+      </if>
+      <if test="allowComment != null">
+        #{allowComment,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="commentCount != null">
+        #{commentCount,jdbcType=INTEGER},
+      </if>
+      <if test="viewCount != null">
+        #{viewCount,jdbcType=INTEGER},
+      </if>
+      <if test="isDel != null">
+        #{isDel,jdbcType=CHAR},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hsia.blog.entity.Article">
+    update article
+    <set>
+      <if test="articleTitle != null">
+        article_title = #{articleTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="articleLink != null">
+        article_link = #{articleLink,jdbcType=VARCHAR},
+      </if>
+      <if test="picture != null">
+        picture = #{picture,jdbcType=VARCHAR},
+      </if>
+      <if test="isTop != null">
+        is_top = #{isTop,jdbcType=CHAR},
+      </if>
+      <if test="tags != null">
+        tags = #{tags,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=CHAR},
+      </if>
+      <if test="allowComment != null">
+        allow_comment = #{allowComment,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="commentCount != null">
+        comment_count = #{commentCount,jdbcType=INTEGER},
+      </if>
+      <if test="viewCount != null">
+        view_count = #{viewCount,jdbcType=INTEGER},
+      </if>
+      <if test="isDel != null">
+        is_del = #{isDel,jdbcType=CHAR},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.hsia.blog.entity.Article">
+    update article
+    set article_title = #{articleTitle,jdbcType=VARCHAR},
+      article_link = #{articleLink,jdbcType=VARCHAR},
+      picture = #{picture,jdbcType=VARCHAR},
+      is_top = #{isTop,jdbcType=CHAR},
+      tags = #{tags,jdbcType=VARCHAR},
+      type = #{type,jdbcType=CHAR},
+      allow_comment = #{allowComment,jdbcType=CHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      comment_count = #{commentCount,jdbcType=INTEGER},
+      view_count = #{viewCount,jdbcType=INTEGER},
+      is_del = #{isDel,jdbcType=CHAR},
+      content = #{content,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hsia.blog.entity.Article">
+    update article
+    set article_title = #{articleTitle,jdbcType=VARCHAR},
+      article_link = #{articleLink,jdbcType=VARCHAR},
+      picture = #{picture,jdbcType=VARCHAR},
+      is_top = #{isTop,jdbcType=CHAR},
+      tags = #{tags,jdbcType=VARCHAR},
+      type = #{type,jdbcType=CHAR},
+      allow_comment = #{allowComment,jdbcType=CHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      comment_count = #{commentCount,jdbcType=INTEGER},
+      view_count = #{viewCount,jdbcType=INTEGER},
+      is_del = #{isDel,jdbcType=CHAR}
+    where id = #{id,jdbcType=CHAR}
+  </update>
+</mapper>

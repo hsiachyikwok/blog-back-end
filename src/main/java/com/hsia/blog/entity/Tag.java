@@ -1,17 +1,8 @@
 package com.hsia.blog.entity;
 
-import lombok.Data;
-
 import java.util.Date;
 
-/**
- * @author: hsia
- * @Date: 2018/1/24 下午3:44
- * @Description:
- */
-@Data
 public class Tag {
-
     private String id;
 
     private String tagName;
@@ -21,4 +12,44 @@ public class Tag {
     private Date createTime;
 
     private Date updateTime;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id == null ? null : id.trim();
+    }
+
+    public String getTagName() {
+        return tagName;
+    }
+
+    public void setTagName(String tagName) {
+        this.tagName = tagName == null ? null : tagName.trim();
+    }
+
+    public String getTagDesc() {
+        return tagDesc;
+    }
+
+    public void setTagDesc(String tagDesc) {
+        this.tagDesc = tagDesc == null ? null : tagDesc.trim();
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public Date getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
+    }
 }
