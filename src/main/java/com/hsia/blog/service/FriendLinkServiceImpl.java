@@ -1,7 +1,11 @@
 package com.hsia.blog.service;
 
+import com.hsia.blog.api.IFriendLinkService;
+import com.hsia.blog.entity.FriendLink;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * @author: hsia
@@ -10,5 +14,24 @@ import org.springframework.stereotype.Service;
  */
 @Slf4j
 @Service
-public class FriendLinkServiceImpl {
+public class FriendLinkServiceImpl implements IFriendLinkService {
+    @Override
+    public void addFriendLink(FriendLink friendLink) {
+
+    }
+
+    @Override
+    public void updateFriendLink(FriendLink friendLink) {
+
+    }
+
+    @Override
+    public List<FriendLink> listFriendLink() {
+        return null;
+    }
+
+    @Override
+    public void deleteFriendLink(String id) {
+
+    }
 }

@@ -1,7 +1,11 @@
 package com.hsia.blog.service;
 
+import com.hsia.blog.api.IArchiveService;
+import com.hsia.blog.entity.Archive;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * @author: hsia
@@ -10,5 +14,24 @@ import org.springframework.stereotype.Service;
  */
 @Service
 @Slf4j
-public class ArchiveServiceImpl {
+public class ArchiveServiceImpl implements IArchiveService{
+    @Override
+    public void addArchive(Archive archive) {
+
+    }
+
+    @Override
+    public void updateArchive(Archive archive) {
+
+    }
+
+    @Override
+    public List<Archive> listArchive() {
+        return null;
+    }
+
+    @Override
+    public void deleteArchive(String id) {
+
+    }
 }
