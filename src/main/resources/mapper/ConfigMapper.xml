@@ -292,4 +292,9 @@
       used_tag_size = #{usedTagSize,jdbcType=INTEGER}
     where id = #{id,jdbcType=CHAR}
   </update>
+  <select id="getConfig" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from config
+  </select>
 </mapper>

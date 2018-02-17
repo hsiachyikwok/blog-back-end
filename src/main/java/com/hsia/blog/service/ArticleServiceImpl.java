@@ -24,13 +24,13 @@ public class ArticleServiceImpl extends BaseServiceImpl implements IArticleServi
     @Override
     @Transactional
     public void addArticle(Article article) {
-        articleMapper.insert(article);
+        articleMapper.insertSelective(article);
     }
 
     @Override
     @Transactional
     public void updateArticle(Article article) {
-        //articleMapper.update(article);
+        articleMapper.updateByPrimaryKeySelective(article);
     }
 
     @Override

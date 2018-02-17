@@ -18,7 +18,7 @@ import java.sql.SQLException;
  * @Date: 2018/1/25 下午5:17
  * @Description: 文章CRUD
  */
-@Api("文章操作接口")
+@Api("文章接口")
 @RestController
 @RequestMapping("/article")
 @Slf4j
