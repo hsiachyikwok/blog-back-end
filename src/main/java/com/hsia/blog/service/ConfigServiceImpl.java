@@ -3,6 +3,7 @@ package com.hsia.blog.service;
 import com.hsia.blog.api.IConfigService;
 import com.hsia.blog.entity.Config;
 import com.hsia.blog.mapper.ConfigMapper;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import javax.annotation.Resource;
@@ -13,6 +14,7 @@ import javax.annotation.Resource;
  * @Description:
  */
 @Service
+@Slf4j
 public class ConfigServiceImpl implements IConfigService {
     @Resource
     private ConfigMapper configMapper;
