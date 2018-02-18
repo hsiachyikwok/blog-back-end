@@ -4,6 +4,7 @@ import com.hsia.blog.api.IArchiveService;
 import com.hsia.blog.entity.Archive;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -16,11 +17,13 @@ import java.util.List;
 @Slf4j
 public class ArchiveServiceImpl implements IArchiveService{
     @Override
+    @Transactional
     public void addArchive(Archive archive) {
 
     }
 
     @Override
+    @Transactional
     public void updateArchive(Archive archive) {
 
     }
@@ -31,6 +34,7 @@ public class ArchiveServiceImpl implements IArchiveService{
     }
 
     @Override
+    @Transactional
     public void deleteArchive(String id) {
 
     }

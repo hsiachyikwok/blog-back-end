@@ -4,6 +4,7 @@ import com.hsia.blog.api.ICategoryService;
 import com.hsia.blog.entity.Category;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -16,11 +17,13 @@ import java.util.List;
 @Slf4j
 public class CategoryServiceImpl implements ICategoryService {
     @Override
+    @Transactional
     public void addCategory(Category category) {
 
     }
 
     @Override
+    @Transactional
     public void updateCategory(Category category) {
 
     }
@@ -31,6 +34,7 @@ public class CategoryServiceImpl implements ICategoryService {
     }
 
     @Override
+    @Transactional
     public void deleteCategory(String id) {
 
     }

@@ -4,6 +4,7 @@ import com.hsia.blog.api.INavService;
 import com.hsia.blog.entity.Navigation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -16,11 +17,13 @@ import java.util.List;
 @Service
 public class NavServiceImpl implements INavService{
     @Override
+    @Transactional
     public void addNav(Navigation navigation) {
 
     }
 
     @Override
+    @Transactional
     public void updateNav(Navigation navigation) {
 
     }
@@ -31,6 +34,7 @@ public class NavServiceImpl implements INavService{
     }
 
     @Override
+    @Transactional
     public void deleteNav(String id) {
 
     }

@@ -4,6 +4,7 @@ import com.hsia.blog.api.IFriendLinkService;
 import com.hsia.blog.entity.FriendLink;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -16,11 +17,13 @@ import java.util.List;
 @Service
 public class FriendLinkServiceImpl implements IFriendLinkService {
     @Override
+    @Transactional
     public void addFriendLink(FriendLink friendLink) {
 
     }
 
     @Override
+    @Transactional
     public void updateFriendLink(FriendLink friendLink) {
 
     }
@@ -31,6 +34,7 @@ public class FriendLinkServiceImpl implements IFriendLinkService {
     }
 
     @Override
+    @Transactional
     public void deleteFriendLink(String id) {
 
     }

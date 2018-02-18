@@ -4,6 +4,7 @@ import com.hsia.blog.api.ISignatureService;
 import com.hsia.blog.entity.Signature;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -16,11 +17,13 @@ import java.util.List;
 @Service
 public class SignatureServiceImpl implements ISignatureService{
     @Override
+    @Transactional
     public void addSignature(Signature signature) {
 
     }
 
     @Override
+    @Transactional
     public void updateSignature(Signature signature) {
 
     }
@@ -31,6 +34,7 @@ public class SignatureServiceImpl implements ISignatureService{
     }
 
     @Override
+    @Transactional
     public void deleteSignature(String id) {
 
     }
