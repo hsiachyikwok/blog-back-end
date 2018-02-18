@@ -47,8 +47,8 @@ public class ArticleController {
     }
 
     @RequestMapping(value = "/{id}",method = RequestMethod.DELETE)
-    public ResponseVo delArticle(@PathVariable String id){
-        articleService.delArticle(id);
+    public ResponseVo deleteArticle(@PathVariable String id){
+        articleService.deleteArticle(id);
         return new ResponseVo();
     }
 

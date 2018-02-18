@@ -35,7 +35,7 @@ public class ArticleServiceImpl extends BaseServiceImpl implements IArticleServi
 
     @Override
     @Transactional
-    public void delArticle(String id) {
+    public void deleteArticle(String id) {
         //articleMapper.delete(id);
     }
 

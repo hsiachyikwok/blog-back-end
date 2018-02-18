@@ -1,52 +1,48 @@
 package com.hsia.blog.controller.tag;
 
-import com.hsia.blog.api.IArticleService;
-import com.hsia.blog.entity.Article;
+import com.hsia.blog.api.ITagService;
+import com.hsia.blog.entity.Tag;
 import com.hsia.blog.vo.ResponseVo;
+import io.swagger.annotations.Api;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author: hsia
  * @Date: 2018/1/31 上午10:30
  * @Description:
  */
+@Api("标签接口")
+@RestController
+@RequestMapping("/tag")
+@Slf4j
 public class TagController {
     @Autowired
-    private IArticleService articleService;
+    private ITagService tagService;
 
     @RequestMapping(value = "/add",method = RequestMethod.POST)
-    public ResponseVo addArticle(@ModelAttribute Article article){
-        articleService.addArticle(article);
+    public ResponseVo addTag(@ModelAttribute Tag tag){
+        tagService.addTag(tag);
         return new ResponseVo();
     }
 
     @RequestMapping(value = "/update",method = RequestMethod.PUT)
-    public ResponseVo updateArticle(@ModelAttribute Article article){
-        articleService.updateArticle(article);
+    public ResponseVo updateTag(@ModelAttribute Tag tag){
+        tagService.updateTag(tag);
         return new ResponseVo();
     }
 
-    @RequestMapping(value = "/list/{state}",method = RequestMethod.GET)
-    public ResponseVo listArticle(@PathVariable String state){
+    @RequestMapping(value = "/list",method = RequestMethod.GET)
+    public ResponseVo listTag(){
         ResponseVo vo = new ResponseVo();
-        vo.setBody(articleService.listArticleByState(state));
+        vo.setBody(tagService.listTag());
         return vo;
     }
 
     @RequestMapping(value = "/{id}",method = RequestMethod.DELETE)
-    public ResponseVo delArticle(@PathVariable String id){
-        articleService.delArticle(id);
+    public ResponseVo deleteTag(@PathVariable String id){
+        tagService.deleteTag(id);
         return new ResponseVo();
-    }
-
-    @RequestMapping(value = "/{id}",method = RequestMethod.GET)
-    public ResponseVo getArticle(@PathVariable String id){
-        ResponseVo vo = new ResponseVo();
-        vo.setBody(articleService.getArticle(id));
-        return vo;
     }
 }

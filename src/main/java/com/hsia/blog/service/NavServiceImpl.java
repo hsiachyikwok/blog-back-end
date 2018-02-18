@@ -21,7 +21,7 @@ public class NavServiceImpl implements INavService{
     }
 
     @Override
-    public void updateTag(Navigation navigation) {
+    public void updateNav(Navigation navigation) {
 
     }
 

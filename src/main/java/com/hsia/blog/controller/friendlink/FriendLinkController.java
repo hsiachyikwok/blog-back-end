@@ -1,52 +1,50 @@
 package com.hsia.blog.controller.friendlink;
 
 import com.hsia.blog.api.IArticleService;
+import com.hsia.blog.api.IFriendLinkService;
 import com.hsia.blog.entity.Article;
+import com.hsia.blog.entity.FriendLink;
 import com.hsia.blog.vo.ResponseVo;
+import io.swagger.annotations.Api;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author: hsia
  * @Date: 2018/1/31 上午10:30
  * @Description:
  */
+@Api("友链接口")
+@RestController
+@RequestMapping("/friendlink")
+@Slf4j
 public class FriendLinkController {
     @Autowired
-    private IArticleService articleService;
+    private IFriendLinkService friendLinkService;
 
     @RequestMapping(value = "/add",method = RequestMethod.POST)
-    public ResponseVo addArticle(@ModelAttribute Article article){
-        articleService.addArticle(article);
+    public ResponseVo addFriendLink(@ModelAttribute FriendLink friendlink){
+        friendLinkService.addFriendLink(friendlink);
         return new ResponseVo();
     }
 
     @RequestMapping(value = "/update",method = RequestMethod.PUT)
-    public ResponseVo updateArticle(@ModelAttribute Article article){
-        articleService.updateArticle(article);
+    public ResponseVo updateArticle(@ModelAttribute FriendLink friendlink){
+        friendLinkService.updateFriendLink(friendlink);
         return new ResponseVo();
     }
 
-    @RequestMapping(value = "/list/{state}",method = RequestMethod.GET)
-    public ResponseVo listArticle(@PathVariable String state){
+    @RequestMapping(value = "/list",method = RequestMethod.GET)
+    public ResponseVo listFriendLink(){
         ResponseVo vo = new ResponseVo();
-        vo.setBody(articleService.listArticleByState(state));
+        vo.setBody(friendLinkService.listFriendLink());
         return vo;
     }
 
     @RequestMapping(value = "/{id}",method = RequestMethod.DELETE)
-    public ResponseVo delArticle(@PathVariable String id){
-        articleService.delArticle(id);
+    public ResponseVo deleteFriendLink(@PathVariable String id){
+        friendLinkService.deleteFriendLink(id);
         return new ResponseVo();
-    }
-
-    @RequestMapping(value = "/{id}",method = RequestMethod.GET)
-    public ResponseVo getArticle(@PathVariable String id){
-        ResponseVo vo = new ResponseVo();
-        vo.setBody(articleService.getArticle(id));
-        return vo;
     }
 }

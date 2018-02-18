@@ -26,7 +26,7 @@ public interface IArticleService {
      * delArticle
      * @param id
      */
-    void delArticle(String id);
+    void deleteArticle(String id);
 
     /**
      * listArticleByState

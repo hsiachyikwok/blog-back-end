@@ -20,7 +20,7 @@ public interface INavService {
      * 更新导航
      * @param navigation
      */
-    void updateTag(Navigation navigation);
+    void updateNav(Navigation navigation);
 
     /**
      * 查询导航
