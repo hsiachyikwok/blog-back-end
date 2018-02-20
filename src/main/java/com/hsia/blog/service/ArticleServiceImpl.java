@@ -41,8 +41,7 @@ public class ArticleServiceImpl extends BaseServiceImpl implements IArticleServi
 
     @Override
     public List<Article> listArticleByState(String state) {
-        //return articleMapper.selectArticleByState(state);
-        return null;
+        return articleMapper.selectArticleByState(state);
     }
 
     @Override

@@ -15,13 +15,14 @@
     <result column="comment_count" jdbcType="INTEGER" property="commentCount" />
     <result column="view_count" jdbcType="INTEGER" property="viewCount" />
     <result column="is_del" jdbcType="CHAR" property="isDel" />
+    <result column="bref_intro" jdbcType="VARCHAR" property="brefIntro" />
   </resultMap>
   <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.hsia.blog.entity.Article">
     <result column="content" jdbcType="LONGVARCHAR" property="content" />
   </resultMap>
   <sql id="Base_Column_List">
     id, article_title, article_link, picture, is_top, tags, type, allow_comment, create_time, 
-    update_time, comment_count, view_count, is_del
+    update_time, comment_count, view_count, is_del, bref_intro
   </sql>
   <sql id="Blob_Column_List">
     content
@@ -43,12 +44,14 @@
       picture, is_top, tags, 
       type, allow_comment, create_time, 
       update_time, comment_count, view_count, 
-      is_del, content)
+      is_del, bref_intro, content
+      )
     values (#{id,jdbcType=CHAR}, #{articleTitle,jdbcType=VARCHAR}, #{articleLink,jdbcType=VARCHAR}, 
       #{picture,jdbcType=VARCHAR}, #{isTop,jdbcType=CHAR}, #{tags,jdbcType=VARCHAR}, 
       #{type,jdbcType=CHAR}, #{allowComment,jdbcType=CHAR}, #{createTime,jdbcType=TIMESTAMP}, 
       #{updateTime,jdbcType=TIMESTAMP}, #{commentCount,jdbcType=INTEGER}, #{viewCount,jdbcType=INTEGER}, 
-      #{isDel,jdbcType=CHAR}, #{content,jdbcType=LONGVARCHAR})
+      #{isDel,jdbcType=CHAR}, #{brefIntro,jdbcType=VARCHAR}, #{content,jdbcType=LONGVARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.hsia.blog.entity.Article">
     insert into article
@@ -91,6 +94,9 @@
       </if>
       <if test="isDel != null">
         is_del,
+      </if>
+      <if test="brefIntro != null">
+        bref_intro,
       </if>
       <if test="content != null">
         content,
@@ -136,6 +142,9 @@
       <if test="isDel != null">
         #{isDel,jdbcType=CHAR},
       </if>
+      <if test="brefIntro != null">
+        #{brefIntro,jdbcType=VARCHAR},
+      </if>
       <if test="content != null">
         #{content,jdbcType=LONGVARCHAR},
       </if>
@@ -180,6 +189,9 @@
       <if test="isDel != null">
         is_del = #{isDel,jdbcType=CHAR},
       </if>
+      <if test="brefIntro != null">
+        bref_intro = #{brefIntro,jdbcType=VARCHAR},
+      </if>
       <if test="content != null">
         content = #{content,jdbcType=LONGVARCHAR},
       </if>
@@ -200,6 +212,7 @@
       comment_count = #{commentCount,jdbcType=INTEGER},
       view_count = #{viewCount,jdbcType=INTEGER},
       is_del = #{isDel,jdbcType=CHAR},
+      bref_intro = #{brefIntro,jdbcType=VARCHAR},
       content = #{content,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=CHAR}
   </update>
@@ -216,7 +229,15 @@
       update_time = #{updateTime,jdbcType=TIMESTAMP},
       comment_count = #{commentCount,jdbcType=INTEGER},
       view_count = #{viewCount,jdbcType=INTEGER},
-      is_del = #{isDel,jdbcType=CHAR}
+      is_del = #{isDel,jdbcType=CHAR},
+      bref_intro = #{brefIntro,jdbcType=VARCHAR}
     where id = #{id,jdbcType=CHAR}
   </update>
+
+  <select id="selectArticleByState" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from article
+    where type = #{type,jdbcType=CHAR} and is_del = '0'
+  </select>
 </mapper>

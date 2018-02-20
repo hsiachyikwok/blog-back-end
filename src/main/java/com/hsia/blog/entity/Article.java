@@ -29,6 +29,8 @@ public class Article {
 
     private String isDel;
 
+    private String brefIntro;
+
     private String content;
 
     public String getId() {
@@ -133,6 +135,14 @@ public class Article {
 
     public void setIsDel(String isDel) {
         this.isDel = isDel == null ? null : isDel.trim();
+    }
+
+    public String getBrefIntro() {
+        return brefIntro;
+    }
+
+    public void setBrefIntro(String brefIntro) {
+        this.brefIntro = brefIntro == null ? null : brefIntro.trim();
     }
 
     public String getContent() {

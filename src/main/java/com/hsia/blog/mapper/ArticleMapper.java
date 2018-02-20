@@ -1,6 +1,9 @@
 package com.hsia.blog.mapper;
 
 import com.hsia.blog.entity.Article;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface ArticleMapper {
     int deleteByPrimaryKey(String id);
@@ -16,4 +19,6 @@ public interface ArticleMapper {
     int updateByPrimaryKeyWithBLOBs(Article record);
 
     int updateByPrimaryKey(Article record);
+
+    List<Article> selectArticleByState(@Param("type") String state);
 }
