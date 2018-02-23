@@ -33,6 +33,8 @@ public class ConfigController {
 
     @RequestMapping(value = "/info",method = RequestMethod.GET)
     public ResponseVo getConfig(){
-        return new ResponseVo();
+        ResponseVo vo = new ResponseVo();
+        vo.setBody(configService.getConfig());
+        return vo;
     }
 }
