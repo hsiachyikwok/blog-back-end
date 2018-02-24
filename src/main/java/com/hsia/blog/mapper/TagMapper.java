@@ -2,6 +2,8 @@ package com.hsia.blog.mapper;
 
 import com.hsia.blog.entity.Tag;
 
+import java.util.List;
+
 public interface TagMapper {
     int deleteByPrimaryKey(String id);
 
@@ -14,4 +16,6 @@ public interface TagMapper {
     int updateByPrimaryKeySelective(Tag record);
 
     int updateByPrimaryKey(Tag record);
+
+    List<Tag> getTagList();
 }

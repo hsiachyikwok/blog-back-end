@@ -2,10 +2,12 @@ package com.hsia.blog.service;
 
 import com.hsia.blog.api.ITagService;
 import com.hsia.blog.entity.Tag;
+import com.hsia.blog.mapper.TagMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -16,6 +18,8 @@ import java.util.List;
 @Slf4j
 @Service
 public class TagServiceImpl implements ITagService {
+    @Resource
+    private TagMapper tagMapper;
     @Override
     @Transactional
     public void addTag(Tag tag) {
@@ -30,7 +34,7 @@ public class TagServiceImpl implements ITagService {
 
     @Override
     public List<Tag> listTag() {
-        return null;
+        return tagMapper.getTagList();
     }
 
     @Override

@@ -2,10 +2,12 @@ package com.hsia.blog.service;
 
 import com.hsia.blog.api.ICategoryService;
 import com.hsia.blog.entity.Category;
+import com.hsia.blog.mapper.CategoryMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -16,6 +18,8 @@ import java.util.List;
 @Service
 @Slf4j
 public class CategoryServiceImpl implements ICategoryService {
+    @Resource
+    private CategoryMapper categoryMapper;
     @Override
     @Transactional
     public void addCategory(Category category) {
@@ -30,7 +34,7 @@ public class CategoryServiceImpl implements ICategoryService {
 
     @Override
     public List<Category> listCategory() {
-        return null;
+        return categoryMapper.getCategoryList();
     }
 
     @Override

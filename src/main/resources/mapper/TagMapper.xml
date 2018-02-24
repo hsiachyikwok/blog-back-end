@@ -90,4 +90,10 @@
       update_time = #{updateTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=CHAR}
   </update>
+
+  <select id="getTagList" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from tag
+  </select>
 </mapper>
