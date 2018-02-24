@@ -49,6 +49,8 @@ public class Config {
 
     private String location;
 
+    private String about;
+
     public String getId() {
         return id;
     }
@@ -231,5 +233,13 @@ public class Config {
 
     public void setLocation(String location) {
         this.location = location == null ? null : location.trim();
+    }
+
+    public String getAbout() {
+        return about;
+    }
+
+    public void setAbout(String about) {
+        this.about = about == null ? null : about.trim();
     }
 }

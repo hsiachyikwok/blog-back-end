@@ -13,6 +13,8 @@ public interface ConfigMapper {
 
     int updateByPrimaryKeySelective(Config record);
 
+    int updateByPrimaryKeyWithBLOBs(Config record);
+
     int updateByPrimaryKey(Config record);
 
     Config getConfig();

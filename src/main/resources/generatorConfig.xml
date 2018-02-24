@@ -73,17 +73,17 @@
                selectByExampleQueryId="false">
         </table>
 
-        <table schema="myblog" tableName="friend_link" domainObjectName="FriendLink"
-               enableCountByExample="false" enableUpdateByExample="false"
-               enableDeleteByExample="false" enableSelectByExample="false"
-               selectByExampleQueryId="false">
-        </table>
+        <!--<table schema="myblog" tableName="friend_link" domainObjectName="FriendLink"-->
+               <!--enableCountByExample="false" enableUpdateByExample="false"-->
+               <!--enableDeleteByExample="false" enableSelectByExample="false"-->
+               <!--selectByExampleQueryId="false">-->
+        <!--</table>-->
 
-        <table schema="myblog" tableName="navigation" domainObjectName="Navigation"
-               enableCountByExample="false" enableUpdateByExample="false"
-               enableDeleteByExample="false" enableSelectByExample="false"
-               selectByExampleQueryId="false">
-        </table>
+        <!--<table schema="myblog" tableName="navigation" domainObjectName="Navigation"-->
+               <!--enableCountByExample="false" enableUpdateByExample="false"-->
+               <!--enableDeleteByExample="false" enableSelectByExample="false"-->
+               <!--selectByExampleQueryId="false">-->
+        <!--</table>-->
 
         <!--<table schema="myblog" tableName="signature" domainObjectName="Signature"-->
                <!--enableCountByExample="false" enableUpdateByExample="false"-->

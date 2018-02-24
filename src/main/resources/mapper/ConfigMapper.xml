@@ -26,15 +26,23 @@
     <result column="used_tag_size" jdbcType="INTEGER" property="usedTagSize" />
     <result column="location" jdbcType="VARCHAR" property="location" />
   </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.hsia.blog.entity.Config">
+    <result column="about" jdbcType="LONGVARCHAR" property="about" />
+  </resultMap>
   <sql id="Base_Column_List">
     id, user_name, password, avatar, blog_title, blog_sub_title, blog_logo, favicon, 
     meta_keywords, meta_desc, footer, notice, allow_comment, create_time, update_time, 
     list_style, recent_comment_size, page_size, page_width, most_view_size, most_comment_size, 
     used_tag_size, location
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+  <sql id="Blob_Column_List">
+    about
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
     select 
     <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
     from config
     where id = #{id,jdbcType=CHAR}
   </select>
@@ -50,7 +58,8 @@
       allow_comment, create_time, update_time, 
       list_style, recent_comment_size, page_size, 
       page_width, most_view_size, most_comment_size, 
-      used_tag_size, location)
+      used_tag_size, location, about
+      )
     values (#{id,jdbcType=CHAR}, #{userName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
       #{avatar,jdbcType=VARCHAR}, #{blogTitle,jdbcType=VARCHAR}, #{blogSubTitle,jdbcType=VARCHAR}, 
       #{blogLogo,jdbcType=VARCHAR}, #{favicon,jdbcType=VARCHAR}, #{metaKeywords,jdbcType=VARCHAR}, 
@@ -58,7 +67,8 @@
       #{allowComment,jdbcType=CHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
       #{listStyle,jdbcType=CHAR}, #{recentCommentSize,jdbcType=INTEGER}, #{pageSize,jdbcType=INTEGER}, 
       #{pageWidth,jdbcType=INTEGER}, #{mostViewSize,jdbcType=INTEGER}, #{mostCommentSize,jdbcType=INTEGER}, 
-      #{usedTagSize,jdbcType=INTEGER}, #{location,jdbcType=VARCHAR})
+      #{usedTagSize,jdbcType=INTEGER}, #{location,jdbcType=VARCHAR}, #{about,jdbcType=LONGVARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.hsia.blog.entity.Config">
     insert into config
@@ -132,6 +142,9 @@
       <if test="location != null">
         location,
       </if>
+      <if test="about != null">
+        about,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -202,6 +215,9 @@
       </if>
       <if test="location != null">
         #{location,jdbcType=VARCHAR},
+      </if>
+      <if test="about != null">
+        #{about,jdbcType=LONGVARCHAR},
       </if>
     </trim>
   </insert>
@@ -274,7 +290,37 @@
       <if test="location != null">
         location = #{location,jdbcType=VARCHAR},
       </if>
+      <if test="about != null">
+        about = #{about,jdbcType=LONGVARCHAR},
+      </if>
     </set>
+    where id = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.hsia.blog.entity.Config">
+    update config
+    set user_name = #{userName,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      avatar = #{avatar,jdbcType=VARCHAR},
+      blog_title = #{blogTitle,jdbcType=VARCHAR},
+      blog_sub_title = #{blogSubTitle,jdbcType=VARCHAR},
+      blog_logo = #{blogLogo,jdbcType=VARCHAR},
+      favicon = #{favicon,jdbcType=VARCHAR},
+      meta_keywords = #{metaKeywords,jdbcType=VARCHAR},
+      meta_desc = #{metaDesc,jdbcType=VARCHAR},
+      footer = #{footer,jdbcType=VARCHAR},
+      notice = #{notice,jdbcType=VARCHAR},
+      allow_comment = #{allowComment,jdbcType=CHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      list_style = #{listStyle,jdbcType=CHAR},
+      recent_comment_size = #{recentCommentSize,jdbcType=INTEGER},
+      page_size = #{pageSize,jdbcType=INTEGER},
+      page_width = #{pageWidth,jdbcType=INTEGER},
+      most_view_size = #{mostViewSize,jdbcType=INTEGER},
+      most_comment_size = #{mostCommentSize,jdbcType=INTEGER},
+      used_tag_size = #{usedTagSize,jdbcType=INTEGER},
+      location = #{location,jdbcType=VARCHAR},
+      about = #{about,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=CHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.hsia.blog.entity.Config">
@@ -307,6 +353,8 @@
   <select id="getConfig" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
     from config
   </select>
 </mapper>
