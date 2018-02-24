@@ -43,11 +43,11 @@
         </javaClientGenerator>
 
         <!-- 数据表进行生成操作 schema:相当于库名; tableName:表名; domainObjectName:对应的DO -->
-        <table schema="myblog" tableName="article" domainObjectName="Article"
-               enableCountByExample="false" enableUpdateByExample="false"
-               enableDeleteByExample="false" enableSelectByExample="false"
-               selectByExampleQueryId="false">
-        </table>
+        <!--<table schema="myblog" tableName="article" domainObjectName="Article"-->
+               <!--enableCountByExample="false" enableUpdateByExample="false"-->
+               <!--enableDeleteByExample="false" enableSelectByExample="false"-->
+               <!--selectByExampleQueryId="false">-->
+        <!--</table>-->
 
         <!--<table schema="myblog" tableName="archive" domainObjectName="Archive"-->
                <!--enableCountByExample="false" enableUpdateByExample="false"-->
@@ -67,23 +67,23 @@
                <!--selectByExampleQueryId="false">-->
         <!--</table>-->
 
-        <!--<table schema="myblog" tableName="config" domainObjectName="Config"-->
-               <!--enableCountByExample="false" enableUpdateByExample="false"-->
-               <!--enableDeleteByExample="false" enableSelectByExample="false"-->
-               <!--selectByExampleQueryId="false">-->
-        <!--</table>-->
+        <table schema="myblog" tableName="config" domainObjectName="Config"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false">
+        </table>
 
-        <!--<table schema="myblog" tableName="friend_link" domainObjectName="FriendLink"-->
-               <!--enableCountByExample="false" enableUpdateByExample="false"-->
-               <!--enableDeleteByExample="false" enableSelectByExample="false"-->
-               <!--selectByExampleQueryId="false">-->
-        <!--</table>-->
+        <table schema="myblog" tableName="friend_link" domainObjectName="FriendLink"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false">
+        </table>
 
-        <!--<table schema="myblog" tableName="navigation" domainObjectName="Navigation"-->
-               <!--enableCountByExample="false" enableUpdateByExample="false"-->
-               <!--enableDeleteByExample="false" enableSelectByExample="false"-->
-               <!--selectByExampleQueryId="false">-->
-        <!--</table>-->
+        <table schema="myblog" tableName="navigation" domainObjectName="Navigation"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false">
+        </table>
 
         <!--<table schema="myblog" tableName="signature" domainObjectName="Signature"-->
                <!--enableCountByExample="false" enableUpdateByExample="false"-->

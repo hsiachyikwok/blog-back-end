@@ -2,10 +2,12 @@ package com.hsia.blog.service;
 
 import com.hsia.blog.api.IFriendLinkService;
 import com.hsia.blog.entity.FriendLink;
+import com.hsia.blog.mapper.FriendLinkMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -16,6 +18,10 @@ import java.util.List;
 @Slf4j
 @Service
 public class FriendLinkServiceImpl implements IFriendLinkService {
+
+    @Resource
+    private FriendLinkMapper friendLinkMapper;
+
     @Override
     @Transactional
     public void addFriendLink(FriendLink friendLink) {
@@ -30,7 +36,7 @@ public class FriendLinkServiceImpl implements IFriendLinkService {
 
     @Override
     public List<FriendLink> listFriendLink() {
-        return null;
+        return friendLinkMapper.getLinkList();
     }
 
     @Override

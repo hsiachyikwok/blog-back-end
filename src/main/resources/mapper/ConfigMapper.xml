@@ -24,12 +24,13 @@
     <result column="most_view_size" jdbcType="INTEGER" property="mostViewSize" />
     <result column="most_comment_size" jdbcType="INTEGER" property="mostCommentSize" />
     <result column="used_tag_size" jdbcType="INTEGER" property="usedTagSize" />
+    <result column="location" jdbcType="VARCHAR" property="location" />
   </resultMap>
   <sql id="Base_Column_List">
     id, user_name, password, avatar, blog_title, blog_sub_title, blog_logo, favicon, 
     meta_keywords, meta_desc, footer, notice, allow_comment, create_time, update_time, 
     list_style, recent_comment_size, page_size, page_width, most_view_size, most_comment_size, 
-    used_tag_size
+    used_tag_size, location
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
@@ -49,7 +50,7 @@
       allow_comment, create_time, update_time, 
       list_style, recent_comment_size, page_size, 
       page_width, most_view_size, most_comment_size, 
-      used_tag_size)
+      used_tag_size, location)
     values (#{id,jdbcType=CHAR}, #{userName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
       #{avatar,jdbcType=VARCHAR}, #{blogTitle,jdbcType=VARCHAR}, #{blogSubTitle,jdbcType=VARCHAR}, 
       #{blogLogo,jdbcType=VARCHAR}, #{favicon,jdbcType=VARCHAR}, #{metaKeywords,jdbcType=VARCHAR}, 
@@ -57,7 +58,7 @@
       #{allowComment,jdbcType=CHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
       #{listStyle,jdbcType=CHAR}, #{recentCommentSize,jdbcType=INTEGER}, #{pageSize,jdbcType=INTEGER}, 
       #{pageWidth,jdbcType=INTEGER}, #{mostViewSize,jdbcType=INTEGER}, #{mostCommentSize,jdbcType=INTEGER}, 
-      #{usedTagSize,jdbcType=INTEGER})
+      #{usedTagSize,jdbcType=INTEGER}, #{location,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.hsia.blog.entity.Config">
     insert into config
@@ -128,6 +129,9 @@
       <if test="usedTagSize != null">
         used_tag_size,
       </if>
+      <if test="location != null">
+        location,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -195,6 +199,9 @@
       </if>
       <if test="usedTagSize != null">
         #{usedTagSize,jdbcType=INTEGER},
+      </if>
+      <if test="location != null">
+        #{location,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -264,6 +271,9 @@
       <if test="usedTagSize != null">
         used_tag_size = #{usedTagSize,jdbcType=INTEGER},
       </if>
+      <if test="location != null">
+        location = #{location,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=CHAR}
   </update>
@@ -289,9 +299,11 @@
       page_width = #{pageWidth,jdbcType=INTEGER},
       most_view_size = #{mostViewSize,jdbcType=INTEGER},
       most_comment_size = #{mostCommentSize,jdbcType=INTEGER},
-      used_tag_size = #{usedTagSize,jdbcType=INTEGER}
+      used_tag_size = #{usedTagSize,jdbcType=INTEGER},
+      location = #{location,jdbcType=VARCHAR}
     where id = #{id,jdbcType=CHAR}
   </update>
+
   <select id="getConfig" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />

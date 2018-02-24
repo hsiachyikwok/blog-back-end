@@ -9,7 +9,7 @@ public class FriendLink {
 
     private String link;
 
-    private Integer order;
+    private Integer orderNum;
 
     private Date createTime;
 
@@ -39,12 +39,12 @@ public class FriendLink {
         this.link = link == null ? null : link.trim();
     }
 
-    public Integer getOrder() {
-        return order;
+    public Integer getOrderNum() {
+        return orderNum;
     }
 
-    public void setOrder(Integer order) {
-        this.order = order;
+    public void setOrderNum(Integer orderNum) {
+        this.orderNum = orderNum;
     }
 
     public Date getCreateTime() {

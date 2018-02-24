@@ -47,6 +47,8 @@ public class Config {
 
     private Integer usedTagSize;
 
+    private String location;
+
     public String getId() {
         return id;
     }
@@ -221,5 +223,13 @@ public class Config {
 
     public void setUsedTagSize(Integer usedTagSize) {
         this.usedTagSize = usedTagSize;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location == null ? null : location.trim();
     }
 }
