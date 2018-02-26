@@ -8,6 +8,12 @@
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
   </resultMap>
+
+  <resultMap id="ArchiveResultMap" type="com.hsia.blog.vo.ArchiveVo">
+    <result column="archive_time" jdbcType="TIMESTAMP" property="archiveTime" />
+    <association property="articleList" select="com.hsia.blog.mapper.ArticleMapper.selectArticleNameByTime" column="archive_time"></association>
+  </resultMap>
+
   <sql id="Base_Column_List">
     id, archive_time, article_count, create_time, update_time
   </sql>
@@ -90,4 +96,8 @@
       update_time = #{updateTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=CHAR}
   </update>
+
+  <select id="getArchiveList" resultMap="ArchiveResultMap">
+  select archive_time from archive
+  </select>
 </mapper>

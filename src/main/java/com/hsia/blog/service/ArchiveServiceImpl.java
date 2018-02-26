@@ -2,10 +2,14 @@ package com.hsia.blog.service;
 
 import com.hsia.blog.api.IArchiveService;
 import com.hsia.blog.entity.Archive;
+import com.hsia.blog.mapper.ArchiveMapper;
+import com.hsia.blog.mapper.ArticleMapper;
+import com.hsia.blog.vo.ArchiveVo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -16,6 +20,10 @@ import java.util.List;
 @Service
 @Slf4j
 public class ArchiveServiceImpl implements IArchiveService{
+
+    @Resource
+    private ArchiveMapper archiveMapper;
+
     @Override
     @Transactional
     public void addArchive(Archive archive) {
@@ -30,7 +38,7 @@ public class ArchiveServiceImpl implements IArchiveService{
 
     @Override
     public List<Archive> listArchive() {
-        return null;
+        return archiveMapper.getArchiveList();
     }
 
     @Override

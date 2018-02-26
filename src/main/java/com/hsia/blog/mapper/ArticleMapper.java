@@ -3,6 +3,7 @@ package com.hsia.blog.mapper;
 import com.hsia.blog.entity.Article;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.Date;
 import java.util.List;
 
 public interface ArticleMapper {
@@ -21,4 +22,6 @@ public interface ArticleMapper {
     int updateByPrimaryKey(Article record);
 
     List<Article> selectArticleByState(@Param("type") String state);
+
+    List<String> selectArticleNameByTime(@Param("archiveTime")Date archiveTime);
 }
