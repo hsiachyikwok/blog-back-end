@@ -238,13 +238,13 @@
     select
     <include refid="Base_Column_List" />
     from article
-    where type = #{type,jdbcType=CHAR} and is_del = '0'
+    where type = #{type,jdbcType=CHAR} and is_del = '0' order by create_time desc
   </select>
 
   <select id="selectArticleNameByTime"  resultType="java.lang.String">
     select article_title from article
     where create_time &gt;= #{archiveTime,jdbcType=TIMESTAMP}
     and create_time &lt; date_add(#{archiveTime}, interval 1 day)
-    and is_del='0' order by create_time
+    and is_del='0' order by create_time asc
   </select>
 </mapper>
