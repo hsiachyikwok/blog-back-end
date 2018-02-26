@@ -98,6 +98,6 @@
   </update>
 
   <select id="getArchiveList" resultMap="ArchiveResultMap">
-  select archive_time from archive
+  select archive_time from archive order by create_time
   </select>
 </mapper>
