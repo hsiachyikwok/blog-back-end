@@ -13,4 +13,6 @@ public class LoginVo {
     String username;
 
     String password;
+
+    String sessionId;
 }

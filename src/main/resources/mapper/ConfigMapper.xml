@@ -357,4 +357,8 @@
     <include refid="Blob_Column_List" />
     from config
   </select>
+
+  <select id="getUserInfo" resultType="java.util.HashMap">
+    select user_name,password from config
+  </select>
 </mapper>

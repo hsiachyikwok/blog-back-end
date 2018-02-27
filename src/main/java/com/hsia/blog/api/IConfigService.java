@@ -2,6 +2,8 @@ package com.hsia.blog.api;
 
 import com.hsia.blog.entity.Config;
 
+import java.util.Map;
+
 /**
  * @author: hsia
  * @Date: 2018/2/17 下午10:03
@@ -19,4 +21,6 @@ public interface IConfigService {
      * @return
      */
     Config getConfig();
+
+    Map getUserInfo();
 }

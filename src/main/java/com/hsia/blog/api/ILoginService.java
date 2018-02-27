@@ -13,7 +13,7 @@ public interface ILoginService {
      * @param vo
      * @return token
      */
-    String login(LoginVo vo);
+    String login(LoginVo vo) throws Exception;
 
     /**
      * 登出

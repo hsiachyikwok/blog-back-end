@@ -1,17 +1,20 @@
 package com.hsia.blog.controller.auth;
 
 import com.hsia.blog.api.ILoginService;
-import com.hsia.blog.exception.GlobalException;
 import com.hsia.blog.vo.LoginVo;
 import com.hsia.blog.vo.ResponseVo;
-import io.swagger.annotations.*;
-import lombok.SneakyThrows;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
-import javax.validation.constraints.Size;
+import javax.servlet.http.HttpSession;
+
 
 /**
  * @author: hsia
@@ -29,16 +32,17 @@ public class LoginController {
 
     @ApiOperation("登录")
     @RequestMapping(value = "/login",method = RequestMethod.POST)
-    public ResponseVo login(@ModelAttribute LoginVo loginVo){
+    public ResponseVo login(@ModelAttribute LoginVo loginVo,HttpSession session) throws Exception {
+        loginVo.setSessionId(session.getId());
         ResponseVo vo = new ResponseVo();
-        vo.setBody(loginService.login(loginVo));
+        String token = loginService.login(loginVo);
+        vo.setBody(token);
         return vo;
     }
     @ApiOperation("登出")
-    @RequestMapping(value = "/login",method = RequestMethod.GET)
+    @RequestMapping(value = "/logout",method = RequestMethod.GET)
     public ResponseVo logout(){
         loginService.logout();
-        ResponseVo vo = new ResponseVo();
-        return vo;
+        return new ResponseVo();
     }
     }

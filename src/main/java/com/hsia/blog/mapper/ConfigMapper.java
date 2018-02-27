@@ -2,6 +2,8 @@ package com.hsia.blog.mapper;
 
 import com.hsia.blog.entity.Config;
 
+import java.util.Map;
+
 public interface ConfigMapper {
     int deleteByPrimaryKey(String id);
 
@@ -18,4 +20,6 @@ public interface ConfigMapper {
     int updateByPrimaryKey(Config record);
 
     Config getConfig();
+
+    Map getUserInfo();
 }
