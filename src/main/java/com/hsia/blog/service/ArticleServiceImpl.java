@@ -48,4 +48,14 @@ public class ArticleServiceImpl extends BaseServiceImpl implements IArticleServi
     public Article getArticle(String id) {
         return articleMapper.selectByPrimaryKey(id);
     }
+
+    @Override
+    public List<Article> getArticleListByTag(String tagName) {
+        return articleMapper.selectArticleListByTag(tagName);
+    }
+
+    @Override
+    public List<Article> getArticleListByCategory(String catName) {
+        return articleMapper.selectArticleListByCategory(catName);
+    }
 }

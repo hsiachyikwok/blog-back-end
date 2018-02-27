@@ -247,4 +247,18 @@
     and create_time &lt; date_add(#{archiveTime}, interval 1 day)
     and is_del='0' order by create_time asc
   </select>
+
+  <select id="selectArticleListByTag" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from article where tags like CONCAT(CONCAT('%',#{tagName}), ',','%') order by create_time desc
+  </select>
+
+  <select id="selectArticleListByCategory" resultMap="BaseResultMap">
+    select
+    a.id, a.article_title, a.article_link, a.picture, a.is_top, a.tags, a.type, a.allow_comment, a.create_time,
+    a.update_time, a.comment_count, a.view_count, a.is_del, a.bref_intro
+    from category c inner join category_article_ref car inner join article a where  #{catName}= c.cat_name and c.id = car.category_id
+    and a.id = car.article_id order by a.create_time desc
+  </select>
 </mapper>

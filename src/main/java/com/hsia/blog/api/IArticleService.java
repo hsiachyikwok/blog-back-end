@@ -41,4 +41,18 @@ public interface IArticleService {
      * @return
      */
     Article getArticle(String id);
+
+    /**
+     * 根据标签获取文章列表
+     * @param tagName
+     * @return
+     */
+    List<Article> getArticleListByTag(String tagName);
+
+    /**
+     * 根据分类名获取文章列表
+     * @param catName
+     * @return
+     */
+    List<Article> getArticleListByCategory(String catName);
 }

@@ -24,4 +24,8 @@ public interface ArticleMapper {
     List<Article> selectArticleByState(@Param("type") String state);
 
     List<String> selectArticleNameByTime(@Param("archiveTime")Date archiveTime);
+
+    List<Article> selectArticleListByTag(@Param("tagName")String tagName);
+
+    List<Article> selectArticleListByCategory(@Param("catName")String catName);
 }

@@ -59,4 +59,18 @@ public class ArticleController {
         return vo;
     }
 
+    @RequestMapping(value = "/tag/{tagName}",method = RequestMethod.GET)
+    public ResponseVo getArticleByTag(@PathVariable String tagName){
+        ResponseVo vo = new ResponseVo();
+        vo.setBody(articleService.getArticleListByTag(tagName));
+        return vo;
+    }
+
+    @RequestMapping(value = "/category/{catName}",method = RequestMethod.GET)
+    public ResponseVo getArticleByCategory(@PathVariable String catName){
+        ResponseVo vo = new ResponseVo();
+        vo.setBody(articleService.getArticleListByCategory(catName));
+        return vo;
+    }
+
 }
