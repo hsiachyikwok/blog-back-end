@@ -5,9 +5,9 @@ import com.hsia.blog.api.ILoginService;
 import com.hsia.blog.vo.LoginVo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+
 import javax.annotation.Resource;
 import java.util.Map;
-import static com.hsia.blog.util.EncrypUtil.getMD5Str;
 
 /**
  * @author: hsia
@@ -21,19 +21,13 @@ public class LoginServiceImpl implements ILoginService {
     private IConfigService configService;
 
     @Override
-    public String login(LoginVo vo) throws Exception {
-        Map userInfo =  configService.getUserInfo();
-        if(!vo.getUsername().equals(userInfo.get("user_name"))){
+    public void login(LoginVo vo) throws Exception {
+        Map userInfo = configService.getUserInfo();
+        if (!vo.getUsername().equals(userInfo.get("user_name"))) {
             throw new Exception("用户名或密码错误");
         }
-        if(!vo.getPassword().equals(userInfo.get("password"))){
+        if (!vo.getPassword().equals(userInfo.get("password"))) {
             throw new Exception("用户名或密码错误");
         }
-        return getMD5Str(vo.getUsername()+vo.getSessionId());
-    }
-
-    @Override
-    public void logout() {
-
     }
 }

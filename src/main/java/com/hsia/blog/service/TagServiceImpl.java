@@ -20,6 +20,7 @@ import java.util.List;
 public class TagServiceImpl implements ITagService {
     @Resource
     private TagMapper tagMapper;
+
     @Override
     @Transactional
     public void addTag(Tag tag) {

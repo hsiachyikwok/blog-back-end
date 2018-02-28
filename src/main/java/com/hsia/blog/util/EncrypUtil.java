@@ -26,7 +26,7 @@ public class EncrypUtil {
             // BigInteger函数则将8位的字符串转换成16位hex值，用字符串来表示；得到字符串形式的hash值
             return new BigInteger(1, md.digest()).toString(16);
         } catch (Exception e) {
-            throw new Exception("MD5加密出现错误，"+e.toString());
+            throw new Exception("MD5加密出现错误，" + e.toString());
         }
     }
 }

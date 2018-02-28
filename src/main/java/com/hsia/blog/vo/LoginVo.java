@@ -2,6 +2,8 @@ package com.hsia.blog.vo;
 
 import lombok.Data;
 
+import javax.servlet.http.HttpSession;
+
 /**
  * @author: hsia
  * @Date: 2018/2/17 下午10:23
@@ -14,5 +16,5 @@ public class LoginVo {
 
     String password;
 
-    String sessionId;
+    HttpSession session;
 }

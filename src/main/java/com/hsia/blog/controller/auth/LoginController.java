@@ -1,6 +1,7 @@
 package com.hsia.blog.controller.auth;
 
 import com.hsia.blog.api.ILoginService;
+import com.hsia.blog.util.SessionUtil;
 import com.hsia.blog.vo.LoginVo;
 import com.hsia.blog.vo.ResponseVo;
 import io.swagger.annotations.Api;
@@ -31,18 +32,20 @@ public class LoginController {
     private ILoginService loginService;
 
     @ApiOperation("登录")
-    @RequestMapping(value = "/login",method = RequestMethod.POST)
-    public ResponseVo login(@ModelAttribute LoginVo loginVo,HttpSession session) throws Exception {
-        loginVo.setSessionId(session.getId());
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    public ResponseVo login(@ModelAttribute LoginVo loginVo, HttpSession session) throws Exception {
         ResponseVo vo = new ResponseVo();
-        String token = loginService.login(loginVo);
-        vo.setBody(token);
+        loginService.login(loginVo);
+        loginVo.setSession(session);
+        SessionUtil.generateSession(loginVo); //生成session
+        vo.setBody(SessionUtil.getSessionInfo(session).getToken());
         return vo;
     }
+
     @ApiOperation("登出")
-    @RequestMapping(value = "/logout",method = RequestMethod.GET)
-    public ResponseVo logout(){
-        loginService.logout();
+    @RequestMapping(value = "/logout", method = RequestMethod.GET)
+    public ResponseVo logout(HttpSession session) {
+        SessionUtil.logout(session);
         return new ResponseVo();
     }
-    }
+}

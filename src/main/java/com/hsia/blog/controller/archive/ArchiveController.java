@@ -22,27 +22,27 @@ public class ArchiveController {
     @Autowired
     private IArchiveService archiveService;
 
-    @RequestMapping(value = "/add",method = RequestMethod.POST)
-    public ResponseVo addArchive(@ModelAttribute Archive archive){
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    public ResponseVo addArchive(@ModelAttribute Archive archive) {
         archiveService.addArchive(archive);
         return new ResponseVo();
     }
 
-    @RequestMapping(value = "/update",method = RequestMethod.PUT)
-    public ResponseVo updateArchive(@ModelAttribute Archive archive){
+    @RequestMapping(value = "/update", method = RequestMethod.PUT)
+    public ResponseVo updateArchive(@ModelAttribute Archive archive) {
         archiveService.updateArchive(archive);
         return new ResponseVo();
     }
 
-    @RequestMapping(value = "/list",method = RequestMethod.GET)
-    public ResponseVo listArchive(){
+    @RequestMapping(value = "/list", method = RequestMethod.GET)
+    public ResponseVo listArchive() {
         ResponseVo vo = new ResponseVo();
         vo.setBody(archiveService.listArchive());
         return vo;
     }
 
-    @RequestMapping(value = "/{id}",method = RequestMethod.DELETE)
-    public ResponseVo deleteArchive(@PathVariable String id){
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    public ResponseVo deleteArchive(@PathVariable String id) {
         archiveService.deleteArchive(id);
         return new ResponseVo();
     }

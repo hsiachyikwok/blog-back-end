@@ -1,8 +1,12 @@
 package com.hsia.blog.interceptor;
 
+import com.hsia.blog.util.EncrypUtil;
+import com.hsia.blog.util.SessionUtil;
+import com.hsia.blog.vo.SessionInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -13,12 +17,20 @@ import javax.servlet.http.HttpSession;
  * @Description: token拦截器
  */
 @Slf4j
-public class TokenInterceptor implements HandlerInterceptor{
+public class TokenInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o) throws Exception {
-        //log.info("进入token拦截器");
-        HttpSession session = httpServletRequest.getSession();
-        log.info(session.getId());
+        SessionInfo sessionInfo = null;
+        //判断是否登录
+        try {
+            sessionInfo = SessionUtil.getSessionInfo(httpServletRequest.getSession(false));
+        } catch (Exception e) {
+            throw new Exception("会话超时");
+        }
+        //验证token
+        if (!sessionInfo.getToken().equals(httpServletRequest.getParameter("token"))) {
+            throw new Exception("会话超时");
+        }
         return true;
     }
 

@@ -15,7 +15,7 @@ import java.util.List;
  */
 @Slf4j
 @Service
-public class NavServiceImpl implements INavService{
+public class NavServiceImpl implements INavService {
     @Override
     @Transactional
     public void addNav(Navigation navigation) {

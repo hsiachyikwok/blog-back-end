@@ -13,10 +13,5 @@ public interface ILoginService {
      * @param vo
      * @return token
      */
-    String login(LoginVo vo) throws Exception;
-
-    /**
-     * 登出
-     */
-    void logout();
+    void login(LoginVo vo) throws Exception;
 }

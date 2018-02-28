@@ -19,7 +19,7 @@ import java.util.List;
  */
 @Service
 @Slf4j
-public class ArchiveServiceImpl implements IArchiveService{
+public class ArchiveServiceImpl implements IArchiveService {
 
     @Resource
     private ArchiveMapper archiveMapper;
