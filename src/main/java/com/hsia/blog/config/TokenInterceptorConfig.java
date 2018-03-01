@@ -25,7 +25,7 @@ public class TokenInterceptorConfig extends WebMvcConfigurerAdapter {
         InterceptorRegistration ir = registry.addInterceptor(tokenInterceptor());
         ir.addPathPatterns("/admin/**");
         ir.excludePathPatterns("/admin/login");
-        ir.excludePathPatterns("/admin/logout");
+        //ir.excludePathPatterns("/admin/logout");
 
     }
 }
