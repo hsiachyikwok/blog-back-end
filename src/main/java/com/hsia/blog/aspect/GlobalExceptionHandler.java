@@ -1,20 +1,20 @@
 package com.hsia.blog.aspect;
+
 import com.hsia.blog.exception.GlobalException;
 import com.hsia.blog.vo.ResponseVo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
+import org.springframework.http.HttpStatus;
 import org.springframework.validation.beanvalidation.MethodValidationPostProcessor;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
 import javax.validation.ValidationException;
-import java.util.Iterator;
-import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 /**
  * @author: hsia
@@ -31,8 +31,12 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(value = GlobalException.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ResponseBody
     public ResponseVo globalExceptionHandler(GlobalException e){
+        log.info("=======================================");
+        log.info("GlobalException message: "+e.getMessage());
+        log.info("=======================================");
         ResponseVo vo = new ResponseVo();
         vo.setCode(e.getCode());
         vo.setMessage(e.getMessage());
@@ -41,12 +45,16 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(value = ValidationException.class)
     @ResponseBody
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public ResponseVo validationHandle(ConstraintViolationException e) {
         String message = " ";
         Set<ConstraintViolation<?>> set = e.getConstraintViolations();
         for (ConstraintViolation c:set) {
             message = message + c.getMessage()+" ";
         }
+        log.info("=======================================");
+        log.info("ValidationException message: "+message);
+        log.info("=======================================");
         ResponseVo vo = new ResponseVo();
         vo.setCode("-666");
         vo.setMessage(message);
@@ -55,6 +63,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(value = Exception.class)
     @ResponseBody
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public ResponseVo exceptionHandler(Exception e){
         log.info("=======================================");
         log.info("Exception message: "+e.getMessage());
