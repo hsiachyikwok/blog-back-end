@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 
@@ -33,9 +34,13 @@ public class LoginController {
 
     @ApiOperation("登录")
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public ResponseVo login(@ModelAttribute LoginVo loginVo, HttpSession session) throws Exception {
+    public ResponseVo login(@ModelAttribute LoginVo loginVo, HttpServletRequest httpServletRequest) throws Exception {
         ResponseVo vo = new ResponseVo();
         loginService.login(loginVo);
+        HttpSession session = httpServletRequest.getSession(false);
+        if (session == null) {
+            session = httpServletRequest.getSession();
+        }
         loginVo.setSession(session);
         SessionUtil.generateSession(loginVo); //生成session
         vo.setBody(SessionUtil.getSessionInfo(session).getToken());
