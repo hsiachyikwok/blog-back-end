@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.Map;
 
 /**
@@ -23,6 +24,7 @@ public class ConfigServiceImpl implements IConfigService {
     @Override
     @Transactional
     public void updateConfig(Config config) {
+        config.setUpdateTime(new Date());
         configMapper.updateByPrimaryKey(config);
     }
 

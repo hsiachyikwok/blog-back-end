@@ -2,6 +2,7 @@ package com.hsia.blog.service;
 
 import com.hsia.blog.api.IConfigService;
 import com.hsia.blog.api.ILoginService;
+import com.hsia.blog.exception.user.UserException;
 import com.hsia.blog.vo.LoginVo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -21,13 +22,13 @@ public class LoginServiceImpl implements ILoginService {
     private IConfigService configService;
 
     @Override
-    public void login(LoginVo vo) throws Exception {
+    public void login(LoginVo vo) {
         Map userInfo = configService.getUserInfo();
         if (!vo.getUsername().equals(userInfo.get("user_name"))) {
-            throw new Exception("用户名或密码错误");
+            throw UserException.USERNAME_PASSWORD_ERROR;
         }
         if (!vo.getPassword().equals(userInfo.get("password"))) {
-            throw new Exception("用户名或密码错误");
+            throw UserException.USERNAME_PASSWORD_ERROR;
         }
     }
 }

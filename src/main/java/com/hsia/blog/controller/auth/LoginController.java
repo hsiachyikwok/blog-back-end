@@ -1,6 +1,7 @@
 package com.hsia.blog.controller.auth;
 
 import com.hsia.blog.api.ILoginService;
+import com.hsia.blog.exception.GlobalException;
 import com.hsia.blog.util.SessionUtil;
 import com.hsia.blog.vo.LoginVo;
 import com.hsia.blog.vo.ResponseVo;
@@ -34,7 +35,7 @@ public class LoginController {
 
     @ApiOperation("登录")
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public ResponseVo login(@ModelAttribute LoginVo loginVo, HttpServletRequest httpServletRequest) throws Exception {
+    public ResponseVo login(@ModelAttribute LoginVo loginVo, HttpServletRequest httpServletRequest) throws GlobalException {
         ResponseVo vo = new ResponseVo();
         loginService.login(loginVo);
         HttpSession session = httpServletRequest.getSession(false);

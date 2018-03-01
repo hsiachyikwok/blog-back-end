@@ -1,5 +1,6 @@
 package com.hsia.blog.util;
 
+import com.hsia.blog.exception.user.UserException;
 import com.hsia.blog.vo.LoginVo;
 import com.hsia.blog.vo.SessionInfo;
 import lombok.extern.slf4j.Slf4j;
@@ -18,13 +19,17 @@ public class SessionUtil {
      *
      * @param vo
      */
-    public static void generateSession(LoginVo vo) throws Exception {
+    public static void generateSession(LoginVo vo) {
         HttpSession session = vo.getSession();
         SessionInfo sessionInfo = new SessionInfo();
         sessionInfo.setUsername(vo.getUsername());
         sessionInfo.setSessionId(session.getId());
         session.setAttribute("sessionInfo", sessionInfo);
-        sessionInfo.setToken(generateSessionToken(vo));
+        try {
+            sessionInfo.setToken(generateSessionToken(vo));
+        } catch (Exception e) {
+            throw UserException.GENERATE_SESSION_FAIL;
+        }
     }
 
     /**
@@ -33,10 +38,10 @@ public class SessionUtil {
      * @param session
      * @return
      */
-    public static SessionInfo getSessionInfo(HttpSession session) throws Exception {
+    public static SessionInfo getSessionInfo(HttpSession session) {
         SessionInfo sessionInfo = (SessionInfo) session.getAttribute("sessionInfo");
         if (sessionInfo == null) {
-            throw new Exception("获取session失败");
+            throw UserException.GET_SESSION_FAIL;
         }
         return sessionInfo;
     }

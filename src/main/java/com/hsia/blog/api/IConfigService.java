@@ -22,5 +22,9 @@ public interface IConfigService {
      */
     Config getConfig();
 
+    /**
+     * 获取用户信息
+     * @return
+     */
     Map getUserInfo();
 }

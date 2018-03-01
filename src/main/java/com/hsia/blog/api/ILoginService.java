@@ -13,5 +13,5 @@ public interface ILoginService {
      * @param vo
      * @return token
      */
-    void login(LoginVo vo) throws Exception;
+    void login(LoginVo vo);
 }
