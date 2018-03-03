@@ -22,7 +22,7 @@ public interface ArticleMapper {
     int updateByPrimaryKey(Article record);
 
     List<Article> selectArticleByState(@Param("type") String state, @Param("pageNum") int pageNum,
-                                       @Param("pageSize") int pageSize);
+                                             @Param("pageSize") int pageSize);
 
     List<String> selectArticleNameByTime(@Param("archiveTime") Date archiveTime);
 

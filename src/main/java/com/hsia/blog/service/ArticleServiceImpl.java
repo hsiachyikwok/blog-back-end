@@ -1,11 +1,13 @@
 package com.hsia.blog.service;
 
+import com.github.pagehelper.PageInfo;
 import com.hsia.blog.api.IArticleService;
 import com.hsia.blog.entity.Article;
 import com.hsia.blog.mapper.ArticleMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 import javax.annotation.Resource;
 import java.util.Date;
 import java.util.List;
@@ -45,8 +47,10 @@ public class ArticleServiceImpl extends BaseServiceImpl implements IArticleServi
     }
 
     @Override
-    public List<Article> listArticleByState(String state,int pageNum,int pageSize) {
-        return articleMapper.selectArticleByState(state,pageNum,pageSize);
+    public Object listArticleByState(String state, int pageNum, int pageSize) {
+        List<Article> articles = articleMapper.selectArticleByState(state, pageNum, pageSize);
+        PageInfo<Article> pageInfo = new PageInfo(articles);
+        return pageInfo;
     }
 
     @Override
@@ -55,12 +59,16 @@ public class ArticleServiceImpl extends BaseServiceImpl implements IArticleServi
     }
 
     @Override
-    public List<Article> getArticleListByTag(String tagName,int pageNum,int pageSize) {
-        return articleMapper.selectArticleListByTag(tagName,pageNum,pageSize);
+    public Object getArticleListByTag(String tagName, int pageNum, int pageSize) {
+        List<Article> articles = articleMapper.selectArticleListByTag(tagName, pageNum, pageSize);
+        PageInfo<Article> pageInfo = new PageInfo(articles);
+        return pageInfo;
     }
 
     @Override
-    public List<Article> getArticleListByCategory(String catName,int pageNum,int pageSize) {
-        return articleMapper.selectArticleListByCategory(catName,pageNum,pageSize);
+    public Object getArticleListByCategory(String catName, int pageNum, int pageSize) {
+        List<Article> articles = articleMapper.selectArticleListByCategory(catName, pageNum, pageSize);
+        PageInfo<Article> pageInfo = new PageInfo(articles);
+        return pageInfo;
     }
 }

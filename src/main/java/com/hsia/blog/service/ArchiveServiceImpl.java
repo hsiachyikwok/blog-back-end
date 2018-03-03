@@ -1,5 +1,6 @@
 package com.hsia.blog.service;
 
+import com.github.pagehelper.PageInfo;
 import com.hsia.blog.api.IArchiveService;
 import com.hsia.blog.entity.Archive;
 import com.hsia.blog.mapper.ArchiveMapper;
@@ -37,8 +38,10 @@ public class ArchiveServiceImpl implements IArchiveService {
     }
 
     @Override
-    public List<Archive> listArchive(int pageNum,int pageSize) {
-        return archiveMapper.getArchiveList(pageNum,pageSize);
+    public Object listArchive(int pageNum,int pageSize) {
+        List<Archive> archives = archiveMapper.getArchiveList(pageNum,pageSize);
+        PageInfo<Archive> pageInfo = new PageInfo(archives);
+        return pageInfo;
     }
 
     @Override
