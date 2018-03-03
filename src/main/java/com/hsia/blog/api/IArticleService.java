@@ -33,7 +33,7 @@ public interface IArticleService {
      * @param state
      * @return
      */
-    List<Article> listArticleByState(String state);
+    List<Article> listArticleByState(String state,int pageNum,int pageSize);
 
     /**
      * getArticle
@@ -47,12 +47,12 @@ public interface IArticleService {
      * @param tagName
      * @return
      */
-    List<Article> getArticleListByTag(String tagName);
+    List<Article> getArticleListByTag(String tagName,int pageNum,int pageSize);
 
     /**
      * 根据分类名获取文章列表
      * @param catName
      * @return
      */
-    List<Article> getArticleListByCategory(String catName);
+    List<Article> getArticleListByCategory(String catName,int pageNum,int pageSize);
 }

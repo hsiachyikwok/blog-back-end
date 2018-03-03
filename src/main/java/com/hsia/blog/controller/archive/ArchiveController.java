@@ -34,10 +34,10 @@ public class ArchiveController {
         return new ResponseVo();
     }
 
-    @RequestMapping(value = "/list", method = RequestMethod.GET)
-    public ResponseVo listArchive() {
+    @RequestMapping(value = "/list", method = RequestMethod.POST)
+    public ResponseVo listArchive(int pageNum,int pageSize) {
         ResponseVo vo = new ResponseVo();
-        vo.setBody(archiveService.listArchive());
+        vo.setBody(archiveService.listArchive(pageNum,pageSize));
         return vo;
     }
 

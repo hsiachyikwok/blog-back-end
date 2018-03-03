@@ -37,8 +37,8 @@ public class ArchiveServiceImpl implements IArchiveService {
     }
 
     @Override
-    public List<Archive> listArchive() {
-        return archiveMapper.getArchiveList();
+    public List<Archive> listArchive(int pageNum,int pageSize) {
+        return archiveMapper.getArchiveList(pageNum,pageSize);
     }
 
     @Override

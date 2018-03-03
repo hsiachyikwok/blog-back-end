@@ -27,7 +27,7 @@ public interface IArchiveService {
      * 查询归档
      * @return
      */
-    List<Archive> listArchive();
+    List<Archive> listArchive(int pageNum,int pageSize);
 
     /**
      * 删除归档

@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -24,6 +25,10 @@ public class ArticleServiceImpl extends BaseServiceImpl implements IArticleServi
     @Override
     @Transactional
     public void addArticle(Article article) {
+        article.setId(createId());
+        article.setIsDel("0");
+        article.setCreateTime(new Date());
+        article.setUpdateTime(new Date());
         articleMapper.insertSelective(article);
     }
 
@@ -40,8 +45,8 @@ public class ArticleServiceImpl extends BaseServiceImpl implements IArticleServi
     }
 
     @Override
-    public List<Article> listArticleByState(String state) {
-        return articleMapper.selectArticleByState(state);
+    public List<Article> listArticleByState(String state,int pageNum,int pageSize) {
+        return articleMapper.selectArticleByState(state,pageNum,pageSize);
     }
 
     @Override
@@ -50,12 +55,12 @@ public class ArticleServiceImpl extends BaseServiceImpl implements IArticleServi
     }
 
     @Override
-    public List<Article> getArticleListByTag(String tagName) {
-        return articleMapper.selectArticleListByTag(tagName);
+    public List<Article> getArticleListByTag(String tagName,int pageNum,int pageSize) {
+        return articleMapper.selectArticleListByTag(tagName,pageNum,pageSize);
     }
 
     @Override
-    public List<Article> getArticleListByCategory(String catName) {
-        return articleMapper.selectArticleListByCategory(catName);
+    public List<Article> getArticleListByCategory(String catName,int pageNum,int pageSize) {
+        return articleMapper.selectArticleListByCategory(catName,pageNum,pageSize);
     }
 }

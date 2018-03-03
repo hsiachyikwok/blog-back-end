@@ -1,6 +1,7 @@
 package com.hsia.blog.mapper;
 
 import com.hsia.blog.entity.Archive;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -17,5 +18,6 @@ public interface ArchiveMapper {
 
     int updateByPrimaryKey(Archive record);
 
-    List<Archive> getArchiveList();
+    List<Archive> getArchiveList(@Param("pageNum") int pageNum,
+                                 @Param("pageSize") int pageSize);
 }

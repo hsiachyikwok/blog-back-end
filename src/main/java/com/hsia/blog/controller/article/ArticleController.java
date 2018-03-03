@@ -39,10 +39,10 @@ public class ArticleController {
         return new ResponseVo();
     }
 
-    @RequestMapping(value = "/list/{state}",method = RequestMethod.GET)
-    public ResponseVo listArticle(@PathVariable String state){
+    @RequestMapping(value = "/list/{state}",method = RequestMethod.POST)
+    public ResponseVo listArticle(@PathVariable String state,int pageNum,int pageSize){
         ResponseVo vo = new ResponseVo();
-        vo.setBody(articleService.listArticleByState(state));
+        vo.setBody(articleService.listArticleByState(state,pageNum,pageSize));
         return vo;
     }
 
@@ -59,17 +59,17 @@ public class ArticleController {
         return vo;
     }
 
-    @RequestMapping(value = "/tag/{tagName}",method = RequestMethod.GET)
-    public ResponseVo getArticleByTag(@PathVariable String tagName){
+    @RequestMapping(value = "/tag/{tagName}",method = RequestMethod.POST)
+    public ResponseVo getArticleByTag(@PathVariable String tagName,int pageNum,int pageSize){
         ResponseVo vo = new ResponseVo();
-        vo.setBody(articleService.getArticleListByTag(tagName));
+        vo.setBody(articleService.getArticleListByTag(tagName,pageNum,pageSize));
         return vo;
     }
 
-    @RequestMapping(value = "/category/{catName}",method = RequestMethod.GET)
-    public ResponseVo getArticleByCategory(@PathVariable String catName){
+    @RequestMapping(value = "/category/{catName}",method = RequestMethod.POST)
+    public ResponseVo getArticleByCategory(@PathVariable String catName,int pageNum,int pageSize){
         ResponseVo vo = new ResponseVo();
-        vo.setBody(articleService.getArticleListByCategory(catName));
+        vo.setBody(articleService.getArticleListByCategory(catName,pageNum,pageSize));
         return vo;
     }
 

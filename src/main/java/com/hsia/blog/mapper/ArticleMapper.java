@@ -21,11 +21,14 @@ public interface ArticleMapper {
 
     int updateByPrimaryKey(Article record);
 
-    List<Article> selectArticleByState(@Param("type") String state);
+    List<Article> selectArticleByState(@Param("type") String state, @Param("pageNum") int pageNum,
+                                       @Param("pageSize") int pageSize);
 
-    List<String> selectArticleNameByTime(@Param("archiveTime")Date archiveTime);
+    List<String> selectArticleNameByTime(@Param("archiveTime") Date archiveTime);
 
-    List<Article> selectArticleListByTag(@Param("tagName")String tagName);
+    List<Article> selectArticleListByTag(@Param("tagName") String tagName, @Param("pageNum") int pageNum,
+                                         @Param("pageSize") int pageSize);
 
-    List<Article> selectArticleListByCategory(@Param("catName")String catName);
+    List<Article> selectArticleListByCategory(@Param("catName") String catName, @Param("pageNum") int pageNum,
+                                              @Param("pageSize") int pageSize);
 }
