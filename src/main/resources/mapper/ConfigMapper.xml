@@ -30,9 +30,15 @@
     <result column="about" jdbcType="LONGVARCHAR" property="about" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, user_name, password, avatar, blog_title, blog_sub_title, blog_logo, favicon, 
-    meta_keywords, meta_desc, footer, notice, allow_comment, create_time, update_time, 
-    list_style, recent_comment_size, page_size, page_width, most_view_size, most_comment_size, 
+    id, user_name, password, avatar, blog_title, blog_sub_title, blog_logo, favicon,
+    meta_keywords, meta_desc, footer, notice, allow_comment, create_time, update_time,
+    list_style, recent_comment_size, page_size, page_width, most_view_size, most_comment_size,
+    used_tag_size, location
+  </sql>
+  <sql id="exclude_user_info_List">
+    id, avatar, blog_title, blog_sub_title, blog_logo, favicon,
+    meta_keywords, meta_desc, footer, notice, allow_comment, create_time, update_time,
+    list_style, recent_comment_size, page_size, page_width, most_view_size, most_comment_size,
     used_tag_size, location
   </sql>
   <sql id="Blob_Column_List">
@@ -352,7 +358,7 @@
 
   <select id="getConfig" resultMap="BaseResultMap">
     select
-    <include refid="Base_Column_List" />
+    <include refid="exclude_user_info_List" />
     ,
     <include refid="Blob_Column_List" />
     from config

@@ -25,7 +25,7 @@ public class ConfigServiceImpl implements IConfigService {
     @Transactional
     public void updateConfig(Config config) {
         config.setUpdateTime(new Date());
-        configMapper.updateByPrimaryKey(config);
+        configMapper.updateByPrimaryKeySelective(config);
     }
 
     @Override
