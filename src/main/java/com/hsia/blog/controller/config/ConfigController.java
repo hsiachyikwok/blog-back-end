@@ -25,7 +25,7 @@ public class ConfigController {
     @Autowired
     private IConfigService configService;
 
-    @RequestMapping(value = "/update",method = RequestMethod.PUT)
+    @RequestMapping(value = "/update",method = RequestMethod.POST)
     public ResponseVo updateConfig(@ModelAttribute Config config){
         configService.updateConfig(config);
         return new ResponseVo();

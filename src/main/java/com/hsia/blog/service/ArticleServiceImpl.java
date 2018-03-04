@@ -37,13 +37,23 @@ public class ArticleServiceImpl extends BaseServiceImpl implements IArticleServi
     @Override
     @Transactional
     public void updateArticle(Article article) {
+        Article record = articleMapper.selectByPrimaryKey(article.getId());
+        if (record == null) {
+            //throw
+        }
         articleMapper.updateByPrimaryKeySelective(article);
     }
 
     @Override
     @Transactional
     public void deleteArticle(String id) {
-        //articleMapper.delete(id);
+        Article record = articleMapper.selectByPrimaryKey(id);
+        if (record == null) {
+            //throw
+        }
+        record.setUpdateTime(new Date());
+        record.setIsDel("1");
+        articleMapper.updateByPrimaryKeySelective(record);
     }
 
     @Override

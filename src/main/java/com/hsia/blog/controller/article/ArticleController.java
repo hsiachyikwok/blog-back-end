@@ -33,7 +33,7 @@ public class ArticleController {
         return new ResponseVo();
     }
 
-    @RequestMapping(value = "/update",method = RequestMethod.PUT)
+    @RequestMapping(value = "/update",method = RequestMethod.POST)
     public ResponseVo updateArticle(@ModelAttribute Article article){
         articleService.updateArticle(article);
         return new ResponseVo();
