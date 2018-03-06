@@ -21,7 +21,7 @@ public class GlobalCorsConfig {
                 registry.addMapping("/**")
                         .allowedHeaders("*")
                         .allowedMethods("*")
-                        .allowedOrigins("http://localhost:8080").allowCredentials(true);
+                        .allowedOrigins("http://localhost:80").allowCredentials(true);
             }
         };
     }
