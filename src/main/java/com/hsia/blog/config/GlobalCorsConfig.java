@@ -21,7 +21,7 @@ public class GlobalCorsConfig {
                 registry.addMapping("/**")
                         .allowedHeaders("*")
                         .allowedMethods("*")
-                        .allowedOrigins("http://www.xiaqiguo.com:80").allowCredentials(true);
+                        .allowedOrigins("http://localhost:80").allowCredentials(true);
             }
         };
     }
