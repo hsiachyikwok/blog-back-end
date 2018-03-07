@@ -100,6 +100,6 @@
   <select id="selectByTagName" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
-    from tag where tag_name = = #{tagName,jdbcType=VARCHAR}
+    from tag where tag_name = #{tagName,jdbcType=VARCHAR}
   </select>
 </mapper>

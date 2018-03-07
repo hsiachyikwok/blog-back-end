@@ -44,6 +44,7 @@ public class ArticleServiceImpl extends BaseServiceImpl implements IArticleServi
         article.setIsDel("0");
         article.setCreateTime(new Date());
         article.setUpdateTime(new Date());
+        article.setTags(article.getTags()+",");
         articleMapper.insertSelective(article);
         Date now = getTodayDate(new Date());
         Archive archive = archiveMapper.getArchiveByDate(now);
