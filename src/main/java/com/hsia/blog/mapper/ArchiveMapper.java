@@ -3,6 +3,7 @@ package com.hsia.blog.mapper;
 import com.hsia.blog.entity.Archive;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.Date;
 import java.util.List;
 
 public interface ArchiveMapper {
@@ -20,4 +21,6 @@ public interface ArchiveMapper {
 
     List<Archive> getArchiveList(@Param("pageNum") int pageNum,
                                  @Param("pageSize") int pageSize);
+
+    Archive getArchiveByDate(@Param("archiveTime") Date date);
 }

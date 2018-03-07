@@ -100,4 +100,11 @@
   <select id="getArchiveList" resultMap="ArchiveResultMap">
   select archive_time from archive order by create_time desc
   </select>
+
+  <select id="getArchiveByDate" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from archive
+    where archive_time = #{archiveTime,jdbcType=TIMESTAMP}
+  </select>
 </mapper>

@@ -1,6 +1,7 @@
 package com.hsia.blog.mapper;
 
 import com.hsia.blog.entity.Tag;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -18,4 +19,6 @@ public interface TagMapper {
     int updateByPrimaryKey(Tag record);
 
     List<Tag> getTagList();
+
+    Tag selectByTagName(@Param("tagName") String tagName);
 }

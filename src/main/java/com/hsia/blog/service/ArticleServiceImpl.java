@@ -2,13 +2,20 @@ package com.hsia.blog.service;
 
 import com.github.pagehelper.PageInfo;
 import com.hsia.blog.api.IArticleService;
+import com.hsia.blog.entity.Archive;
 import com.hsia.blog.entity.Article;
+import com.hsia.blog.entity.Tag;
+import com.hsia.blog.mapper.ArchiveMapper;
 import com.hsia.blog.mapper.ArticleMapper;
+import com.hsia.blog.mapper.TagMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -24,6 +31,12 @@ public class ArticleServiceImpl extends BaseServiceImpl implements IArticleServi
     @Resource
     private ArticleMapper articleMapper;
 
+    @Resource
+    private ArchiveMapper archiveMapper;
+
+    @Resource
+    private TagMapper tagMapper;
+
     @Override
     @Transactional
     public void addArticle(Article article) {
@@ -32,6 +45,25 @@ public class ArticleServiceImpl extends BaseServiceImpl implements IArticleServi
         article.setCreateTime(new Date());
         article.setUpdateTime(new Date());
         articleMapper.insertSelective(article);
+        Date now = getTodayDate(new Date());
+        Archive archive = archiveMapper.getArchiveByDate(now);
+
+        if (archive == null) {
+            archive = new Archive();
+            archive.setId(createId());
+            archive.setArchiveTime(now);
+            archive.setArticleCount(0);
+            archive.setCreateTime(new Date());
+            archive.setUpdateTime(new Date());
+            archiveMapper.insertSelective(archive);
+        } else {
+            archive.setUpdateTime(new Date());
+            archive.setArticleCount(archive.getArticleCount() + 1);
+            archiveMapper.updateByPrimaryKeySelective(archive);
+        }
+
+        String[] tags = article.getTags().split(",");
+        mantainTags(tags, article.getId());
     }
 
     @Override
@@ -42,6 +74,8 @@ public class ArticleServiceImpl extends BaseServiceImpl implements IArticleServi
             //throw
         }
         articleMapper.updateByPrimaryKeySelective(article);
+        String[] tags = article.getTags().split(",");
+        mantainTags(tags, article.getId());
     }
 
     @Override
@@ -54,6 +88,10 @@ public class ArticleServiceImpl extends BaseServiceImpl implements IArticleServi
         record.setUpdateTime(new Date());
         record.setIsDel("1");
         articleMapper.updateByPrimaryKeySelective(record);
+
+        Archive archive = archiveMapper.getArchiveByDate(getTodayDate(record.getCreateTime()));
+        archive.setUpdateTime(new Date());
+        archive.setArticleCount(archive.getArticleCount() - 1);
     }
 
     @Override
@@ -80,5 +118,39 @@ public class ArticleServiceImpl extends BaseServiceImpl implements IArticleServi
         List<Article> articles = articleMapper.selectArticleListByCategory(catName, pageNum, pageSize);
         PageInfo<Article> pageInfo = new PageInfo(articles);
         return pageInfo;
+    }
+
+    /**
+     * 维护标签表
+     *
+     * @param tags
+     * @param id
+     */
+    private void mantainTags(String[] tags, String id) {
+        for (int i = 0; i < tags.length; i++) {
+            Tag tag = tagMapper.selectByTagName(tags[i]);
+            if (tag == null) {
+                tag = new Tag();
+                tag.setId(createId());
+                tag.setCreateTime(new Date());
+                tag.setUpdateTime(new Date());
+                tag.setTagName(tags[i]);
+                tag.setTagDesc(id);
+                tagMapper.insertSelective(tag);
+            } else {
+                tag.setUpdateTime(new Date());
+                tag.setTagDesc(id);
+                tagMapper.updateByPrimaryKeySelective(tag);
+            }
+        }
+    }
+
+    private Date getTodayDate(Date date) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            return dateFormat.parse(dateFormat.format(date));
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
